@@ -1,4 +1,38 @@
-<?php require_once('../app/partials/head.php'); ?>
+<?php
+session_start();
+require_once '../app/settings/config.php';
+
+/* Handle Login  */
+if (isset($_POST['login'])) {
+    $user_email = $_POST['user_email'];
+    $user_password = sha1(md5($_POST['user_password']));
+
+    $stmt = $mysqli->prepare("SELECT user_name, user_password, user_email, user_access_level, user_id FROM users WHERE user_email =? AND user_password =?");
+    $stmt->bind_param('ss', $user_email, $user_password);
+    $stmt->execute();
+    $stmt->bind_result($user_name, $user_password, $user_email, $user_access_level, $user_id);
+    $rs = $stmt->fetch();
+
+    /* Session Variables */
+    $_SESSION['user_id'] = $user_id;
+    $_SESSION['user_access_level'] = $user_access_level;
+    $_SESSION['user_name'] = $user_name;
+
+    if (($rs && $user_access_level == "admin") || ($rs && $user_access_level == "doctor")) {
+        /* Pass This Alert Via Session */
+        $_SESSION['success'] = 'You Have Successfully Logged In';
+        header('Location: dashboard');
+        exit;
+    } elseif ($rs && $user_access_level == "patient") {
+        $_SESSION['success'] = 'You Have Successfully Logged In To Landlord Dashboard';
+        header('Location: my_dashboard');
+        exit;
+    } else {
+        $err = "Access Denied Please Check Your Email Or Password";
+    }
+}
+require_once('../app/partials/head.php');
+?>
 
 <body class="h-100">
     <div class="authincation h-100">
@@ -20,11 +54,11 @@
                                     <form method="POST">
                                         <div class="form-group">
                                             <label class="mb-1"><strong>Email</strong></label>
-                                            <input type="email" required class="form-control">
+                                            <input type="email" name="user_email" required class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label class="mb-1"><strong>Password</strong></label>
-                                            <input type="password" required class="form-control">
+                                            <input type="password" name="user_password" required class="form-control">
                                         </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
