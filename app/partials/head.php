@@ -9,6 +9,8 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
     <link href="../assets/css/style.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../assets/vendor/fontawesome-free/css/all.min.css">
     <?php
     /* Alert Sesion Via Alerts */
     if (isset($_SESSION['success'])) {
