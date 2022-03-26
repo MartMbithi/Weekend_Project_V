@@ -1,4 +1,26 @@
-<?php require_once('../app/partials/head.php'); ?>
+<?php
+session_start();
+require_once '../app/settings/config.php';
+require_once '../app/settings/codeGen.php';
+
+/* Handle Password Reset */
+if (isset($_POST['reset_password'])) {
+    $user_email = $_POST['user_email'];
+    /* Check If User Exists */
+    $sql = "SELECT * FROM  users WHERE user_email = '$user_email'";
+    $res = mysqli_query($mysqli, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        /* Redirect User To Confirm Password */
+        $_SESSION['success'] = 'Password Reset Token Generated, Proceed To Confirm Password';
+        $_SESSION['user_email'] = $user_email;
+        header('Location: confirm_password');
+        exit;
+    } else {
+        $err = "Email Address Does Not Exist";
+    }
+}
+require_once('../app/partials/head.php');
+?>
 
 <body class="h-100">
     <div class="authincation h-100">
@@ -20,7 +42,7 @@
                                     <form method="POST">
                                         <div class="form-group">
                                             <label class="mb-1"><strong>Email</strong></label>
-                                            <input type="email" required class="form-control">
+                                            <input type="email" name="user_email" required class="form-control">
                                         </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
@@ -32,7 +54,7 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" name="login" class="btn btn-primary btn-block">Reset Password</button>
+                                            <button type="submit" name="reset_password" class="btn btn-primary btn-block">Reset Password</button>
                                         </div>
                                     </form>
                                 </div>

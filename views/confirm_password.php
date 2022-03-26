@@ -1,4 +1,37 @@
-<?php require_once('../app/partials/head.php'); ?>
+<?php
+session_start();
+require_once '../app/settings/config.php';
+require_once '../app/settings/codeGen.php';
+/* Handle Password Reset */
+if (isset($_POST['reset_password'])) {
+    $user_email = $_SESSION['user_email'];
+    $new_password = sha1(md5($_POST['new_password']));
+    $confirm_password = sha1(md5($_POST['confirm_password']));
+
+    /* Check If They Match */
+    if ($new_password != $confirm_password) {
+        $err = "Passwords Does Not Match";
+    } else {
+        $sql = "UPDATE users SET user_password =? WHERE user_email = ?";
+        $prepare = $mysqli->prepare($sql);
+        $bind  = $prepare->bind_param(
+            'ss',
+            $confirm_password,
+            $user_email
+        );
+        $prepare->execute();
+        if ($prepare) {
+            /* Pass This Alert Via Session */
+            $_SESSION['success'] = 'Your Password Has Been Reset Proceed To Login';
+            header('Location: login');
+            exit;
+        } else {
+            $err = "Failed!, Please Try Again";
+        }
+    }
+}
+require_once('../app/partials/head.php');
+?>
 
 <body class="h-100">
     <div class="authincation h-100">
