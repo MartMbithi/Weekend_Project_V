@@ -123,11 +123,57 @@ require_once('../app/partials/head.php');
                                             </ul>
                                             <div class="tab-content">
                                                 <div id="my-posts" class="tab-pane fade active show">
-
+                                                    <br>
+                                                    <form method="post" enctype="multipart/form-data" role="form">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-12">
+                                                                <label for="">Name</label>
+                                                                <input type="text" value="<?php echo $user->user_name; ?>" required name="user_name" class="form-control" id="exampleInputEmail1">
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label for="">Email</label>
+                                                                <input type="text" value="<?php echo $user->user_email; ?>" required name="user_email" class="form-control" id="exampleInputEmail1">
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label for="">Phone Number</label>
+                                                                <input type="text" required value="<?php echo $user->user_phone; ?>" name="user_phone" class="form-control" id="exampleInputEmail1">
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label for="">Age</label>
+                                                                <input type="number" value="<?php echo $user->user_age; ?>" required name="user_age" class="form-control" id="exampleInputEmail1">
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label for="">Address</label>
+                                                                <textarea type="text" required name="user_address" rows="2" class="form-control" id="exampleInputEmail1"><?php echo $user->user_address; ?></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-right">
+                                                            <button type="submit" name="update_profile" class="btn btn-outline-success">Update Profile</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
 
                                                 <div id="about-me" class="tab-pane fade">
-
+                                                    <br>
+                                                    <form method="post" enctype="multipart/form-data" role="form">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-12">
+                                                                <label for="">Old Password</label>
+                                                                <input type="password" required name="old_password" class="form-control" id="exampleInputEmail1">
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label for="">New Password</label>
+                                                                <input type="password" required name="new_password" class="form-control">
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label for="">Confirm New Password</label>
+                                                                <input type="password" required name="confirm_password" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-right">
+                                                            <button type="submit" name="change_password" class="btn btn-outline-success">Update Password</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
