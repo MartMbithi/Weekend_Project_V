@@ -2,5 +2,5 @@
 $dbuser = "root";
 $dbpass = "";
 $host = "localhost";
-$db = "house_rental_mis";
+$db = "iAfya";
 $mysqli = new mysqli($host, $dbuser, $dbpass, $db);
