@@ -4,7 +4,7 @@
 <script src="../assets/js/custom.min.js"></script>
 <script src="../assets/js/deznav-init.js"></script>
 <!-- Toastr -->
-<script src="../assets/plugins/toastr/toastr.min.js"></script>
+<script src="../assets/vendor/toastr/toastr.min.js"></script>
 <!-- Custom File  -->
 <script src="../assets/js/bs-custom-file-input.min.js"></script>
 <!-- Data Tables CDN -->
@@ -50,18 +50,57 @@
 <?php if (isset($success)) { ?>
     <!-- Pop Success Alert -->
     <script>
-        toastr.success('<?php echo $success; ?>')
+        toastr.success("<?php echo $success; ?>", "", {
+            positionClass: "toast-top-left",
+            timeOut: 5e3,
+            newestOnTop: !0,
+            progressBar: !0,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+        })
     </script>
 
 <?php }
 if (isset($err)) { ?>
     <script>
-        toastr.error('<?php echo $err; ?>')
+        toastr.error("<?php echo $err; ?>", "", {
+            positionClass: "toast-top-left",
+            timeOut: 5e3,
+            newestOnTop: !0,
+            progressBar: !0,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+        })
     </script>
 <?php }
 if (isset($info)) { ?>
     <script>
-        toastr.warning('<?php echo $info; ?>')
+        toastr.warning("<?php echo $info; ?>", "", {
+            positionClass: "toast-top-left",
+            timeOut: 5e3,
+            newestOnTop: !0,
+            progressBar: !0,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+        })
     </script>
 <?php }
 ?>
