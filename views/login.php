@@ -4,8 +4,8 @@
     <div class="authincation h-100">
         <div class="container h-100">
             <div class="row justify-content-center h-100 align-items-center">
-                <div class="col-md-6">
-                    <div class="authincation-content">
+                <div class="col-md-6 ">
+                    <div class="authincation-content border border-success">
                         <div class="row no-gutters">
                             <div class="col-xl-12"><br>
                                 <h4 class="text-center mb-4">
@@ -13,7 +13,7 @@
                                     <b> iAfya <br> Healthcare Information Management System </b>
                                 </h4>
                                 <hr>
-                                <div class="auth-form">
+                                <div class="auth-form ">
                                     <h4 class="text-center mb-4">
                                         Sign In
                                     </h4>
