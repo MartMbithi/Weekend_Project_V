@@ -7,13 +7,16 @@
                 <div class="col-md-6">
                     <div class="authincation-content">
                         <div class="row no-gutters">
-                            <div class="col-xl-12">
+                            <div class="col-xl-12"><br>
+                                <h4 class="text-center mb-4">
+                                    <img src="../assets/images/logo.png">
+                                    <b> iAfya <br> Healthcare Information Management System </b>
+                                </h4>
+                                <hr>
                                 <div class="auth-form">
                                     <h4 class="text-center mb-4">
-                                        <img src="../assets/images/logo.png">
-                                        <b> iAfya <br> Healthcare Information Management System </b>
+                                        Sign In
                                     </h4>
-                                    <hr>
                                     <form method="POST">
                                         <div class="form-group">
                                             <label class="mb-1"><strong>Email</strong></label>
