@@ -63,8 +63,8 @@ require_once('../app/partials/head.php');
                     </div>
                     <!-- row -->
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="profile card card-body px-3 pt-3 pb-0">
+                        <div class="col-lg-12 ">
+                            <div class="profile card card-body px-3 pt-3 pb-0 border border-success">
                                 <div class="profile-head">
                                     <div class="photo-content">
                                         <div class="cover-photo"></div>
@@ -76,11 +76,7 @@ require_once('../app/partials/head.php');
                                         <div class="profile-details">
                                             <div class="profile-name px-3 pt-2">
                                                 <h4 class="text-primary mb-0"><?php echo $user->user_name; ?></h4>
-                                                <p><?php echo $user->user_phone; ?></p>
-                                            </div>
-                                            <div class="profile-email px-2 pt-2">
-                                                <h4 class="text-muted mb-0"><?php echo $user->user_email; ?></h4>
-                                                <p>Email</p>
+                                                <p><?php echo ucwords($user->user_access_level); ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -95,16 +91,19 @@ require_once('../app/partials/head.php');
                                     <div class="text-left">
                                         <ul class="list-group list-group-unbordered mb-3">
                                             <li class="list-group-item">
-                                                <b><i class="fas fa-envelope text-warning"></i> Email: </b> <a class="float-right"><?php echo $user->user_email; ?></a>
+                                                <b><i class="fas fa-tag text-success"></i> Staff No: </b> <a class="float-right"><?php echo $user->user_number; ?></a>
                                             </li>
                                             <li class="list-group-item">
-                                                <b><i class="fas fa-phone text-warning"></i> Phone No: </b> <a class="float-right"><?php echo $user->user_phone; ?></a>
+                                                <b><i class="fas fa-envelope text-success"></i> Email: </b> <a class="float-right"><?php echo $user->user_email; ?></a>
                                             </li>
                                             <li class="list-group-item">
-                                                <b><i class="fas fa-map-pin text-warning"></i> Address: </b> <a class="float-right"><?php echo $user->user_address; ?></a>
+                                                <b><i class="fas fa-phone text-success"></i> Phone No: </b> <a class="float-right"><?php echo $user->user_phone; ?></a>
                                             </li>
                                             <li class="list-group-item">
-                                                <b><i class="fas fa-user-tag text-warning"></i> Age: </b> <a class="float-right"><?php echo $user->user_age; ?> Years</a>
+                                                <b><i class="fas fa-map-pin text-success"></i> Address: </b> <a class="float-right"><?php echo $user->user_address; ?></a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b><i class="fas fa-user-tag text-success"></i> Age: </b> <a class="float-right"><?php echo $user->user_age; ?> Years</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -113,7 +112,7 @@ require_once('../app/partials/head.php');
                         </div>
 
                         <div class="col-xl-8">
-                            <div class="card">
+                            <div class="card border border-success">
                                 <div class="card-body">
                                     <div class="profile-tab">
                                         <div class="custom-tab-1">
