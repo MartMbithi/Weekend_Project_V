@@ -42,6 +42,11 @@
                     <li><a href="reports_bills">Bills</a></li>
                 </ul>
             </li>
+            <li><a href="logout" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-381-exit"></i>
+                    <span class="nav-text">Log Out</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
