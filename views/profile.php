@@ -1,6 +1,66 @@
 <?php
 session_start();
 require_once '../app/settings/config.php';
+require_once('../app/settings/checklogin.php');
+
+/* Update Profile */
+if (isset($_POST['update_profile'])) {
+    $user_id = $_SESSION['user_id'];
+    $user_name = $_POST['user_name'];
+    $user_email = $_POST['user_email'];
+    $user_phone = $_POST['user_phone'];
+    $user_age = $_POST['user_age'];
+    $user_address = $_POST['user_address'];
+
+    /* Persist */
+    $sql = "UPDATE users SET user_name =?, user_email =?, user_phone =?, user_age =?, user_address =? WHERE user_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssssss',
+        $user_name,
+        $user_email,
+        $user_phone,
+        $user_age,
+        $user_address,
+        $user_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "$user_name Account Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+/* Change Password */
+if (isset($_POST['change_password'])) {
+    $user_id = $_SESSION['user_id'];
+    $old_password = sha1(md5($_POST['old_password']));
+    $new_password = sha1(md5($_POST['new_password']));
+    $confirm_password = sha1(md5($_POST['confirm_password']));
+
+    /* Check If Old Password  Match  */
+    $sql = "SELECT * FROM  users WHERE user_id = '$user_id'";
+    $res = mysqli_query($mysqli, $sql);
+    if (mysqli_num_rows($res) > 0) {
+        $row = mysqli_fetch_assoc($res);
+        if ($old_password != $row['user_password']) {
+            $err =  "Please Enter Correct Old Password";
+        } elseif ($new_password != $confirm_password) {
+            $err = "Confirmation Password Does Not Match";
+        } else {
+            $new_password  = sha1(md5($_POST['new_password']));
+            $query = "UPDATE users SET  user_password =? WHERE user_id =?";
+            $stmt = $mysqli->prepare($query);
+            $rc = $stmt->bind_param('ss', $new_password, $id);
+            $stmt->execute();
+            if ($stmt) {
+                $success = "Password Updated";
+            } else {
+                $err = "Please Try Again Or Try Later";
+            }
+        }
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
