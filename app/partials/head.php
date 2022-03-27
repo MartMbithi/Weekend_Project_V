@@ -23,4 +23,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css" />
     <!-- Toastr -->
     <link rel="stylesheet" href="../assets/vendor/toastr/toastr.min.css">
+    <link href="../assets/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
 </head>
