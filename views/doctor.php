@@ -23,6 +23,32 @@ if (isset($_POST['update_access_levels'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
+/* Change Passwords */
+if (isset($_POST['update_passwords'])) {
+    $new_password = sha1(md5($_POST['new_password']));
+    $confirm_password = sha1(md5($_POST['confirm_password']));
+    $user_id = $_GET['view'];
+
+    /* Check If They Match */
+    if ($new_password != $confirm_password) {
+        $err = "Passwords Does Not Match";
+    } else {
+        $sql = "UPDATE users SET user_password =? WHERE user_id = ?";
+        $prepare = $mysqli->prepare($sql);
+        $bind = $prepare->bind_param(
+            'ss',
+            $confirm_password,
+            $user_id
+        );
+        $prepare->execute();
+        if ($prepare) {
+            $success = "Login Password Updated";
+        } else {
+            $err = "Failed!, Please Try Again";
+        }
+    }
+}
 require_once('../app/partials/head.php');
 
 ?>
