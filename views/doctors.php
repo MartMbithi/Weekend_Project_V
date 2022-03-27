@@ -46,24 +46,23 @@ if (isset($_POST['update_doctor'])) {
     $user_phone = $_POST['user_phone'];
     $user_age = $_POST['user_age'];
     $user_address = $_POST['user_address'];
-    $user_access_level = $_POST['user_access_level'];
 
     /* Persist */
-    $sql = "UPDATE users SET user_name =?, user_email =?, user_phone =?, user_age =?, user_address =?, user_access_level =? 
+    $sql = "UPDATE users SET user_name =?, user_email =?, user_phone =?, user_age =?, user_address =? 
     WHERE user_number =?";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'sssssss',
+        'ssssss',
         $user_name,
         $user_email,
         $user_phone,
         $user_age,
         $user_address,
-        $user_access_level
+        $user_number
     );
     $prepare->execute();
     if ($prepare) {
-        $success = "$user_number - $user_name Details Updated";
+        $success = "$user_number - $user_name , $user_access_level Updated";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -267,29 +266,17 @@ require_once('../app/partials/head.php');
                                                                 <label for="">Full Names</label>
                                                                 <input type="text" required name="user_name" value="<?php echo $user->user_name; ?>" class="form-control">
                                                             </div>
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-md-4">
                                                                 <label for="">Email</label>
                                                                 <input type="email" required name="user_email" value="<?php echo $user->user_email; ?>" class="form-control">
                                                             </div>
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-md-4">
                                                                 <label for="">Contacts</label>
                                                                 <input type="text" required name="user_phone" value="<?php echo $user->user_phone; ?>" class="form-control">
                                                             </div>
-                                                            <div class="form-group col-md-3">
+                                                            <div class="form-group col-md-4">
                                                                 <label for="">Age</label>
                                                                 <input type="number" required name="user_age" value="<?php echo $user->user_age; ?>" class="form-control">
-                                                            </div>
-                                                            <div class="form-group col-md-3">
-                                                                <label for="">Access Level</label>
-                                                                <select required name="user_access_level" class="form-control">
-                                                                    <?php if ($user->user_access_level == 'admin') { ?>
-                                                                        <option value="admin">Administrator</option>
-                                                                    <?php } else if ($user->user_access_level == 'doctor') { ?>
-                                                                        <option value="doctor">Doctor</option>
-                                                                    <?php } ?>
-                                                                    <option value="doctor">Doctor</option>
-                                                                    <option value="admin">Administrator</option>
-                                                                </select>
                                                             </div>
                                                             <div class="form-group col-md-12">
                                                                 <label for="">Address</label>
