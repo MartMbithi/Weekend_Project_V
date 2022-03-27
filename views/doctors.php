@@ -166,19 +166,61 @@ require_once('../app/partials/head.php');
                                         </td>
                                     </tr>
                                     <!-- Update Modal -->
-                                    <div class="modal fade fixed-right" id="update_<?php echo $exp->expense_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal fade fixed-right" id="update_<?php echo $user->user_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog  modal-xl" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header align-items-center">
                                                     <div class="text-bold">
-                                                        <h6 class="text-bold">Update Expense Ref #<?php echo $exp->expense_ref; ?></h6>
+                                                        <h6 class="text-bold">Update <?php echo $user->user_name; ?> Details</h6>
                                                     </div>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-
+                                                    <form method="post" enctype="multipart/form-data" role="form">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-4">
+                                                                <label for="">Number</label>
+                                                                <input type="text" readonly required name="user_number" value="<?php echo $user->user_number; ?>" readonly class="form-control">
+                                                            </div>
+                                                            <div class="form-group col-md-8">
+                                                                <label for="">Full Names</label>
+                                                                <input type="text" required name="user_name" value="<?php echo $user->user_name; ?>" class="form-control">
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label for="">Email</label>
+                                                                <input type="email" required name="user_email" value="<?php echo $user->user_email; ?>" class="form-control">
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label for="">Contacts</label>
+                                                                <input type="text" required name="user_phone" value="<?php echo $user->user_phone; ?>" class="form-control">
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label for="">Age</label>
+                                                                <input type="number" required name="user_age" value="<?php echo $user->user_age; ?>" class="form-control">
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label for="">Access Level</label>
+                                                                <select required name="user_access_level" class="form-control">
+                                                                    <?php if ($user->user_access_level == 'admin') { ?>
+                                                                        <option value="admin">Administrator</option>
+                                                                    <?php } else if ($user->user_access_level == 'doctor') { ?>
+                                                                        <option value="doctor">Doctor</option>
+                                                                    <?php } ?>
+                                                                    <option value="doctor">Doctor</option>
+                                                                    <option value="admin">Administrator</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label for="">Address</label>
+                                                                <textarea type="text" required name="user_address" class="form-control"><?php echo $user->user_address; ?></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-right">
+                                                            <button type="submit" name="update_doctor" class="btn btn-success btn-roundedu">Update Doctor</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
