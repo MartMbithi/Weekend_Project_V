@@ -2,8 +2,41 @@
 session_start();
 require_once '../app/settings/config.php';
 require_once('../app/settings/codeGen.php');
-
 /* Add Doctor */
+if (isset($_POST['add_doctor'])) {
+    $user_number = $_POST['user_number'];
+    $user_name = $_POST['user_name'];
+    $user_email = $_POST['user_email'];
+    $user_phone = $_POST['user_phone'];
+    $user_age = $_POST['user_age'];
+    $user_address = $_POST['user_address'];
+    $user_date_joined = date('d M Y');
+    $user_password = sha1(md5($_POST['user_password']));
+    $user_access_level = $_POST['user_access_level'];
+
+    /* Persist */
+    $sql = "INSERT INTOO users(user_number, user_name, user_email, user_phone, user_age, user_address, user_date_joined, user_password, user_access_level)
+    VALUES(?,?,?,?,?,?,?,?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sssssssss',
+        $user_number,
+        $user_name,
+        $user_email,
+        $user_phone,
+        $user_age,
+        $user_address,
+        $user_date_joined,
+        $user_password,
+        $user_access_level
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "$user_number - $user_name, Added";
+    } else {
+        $err  = "Failed!, Please Try Again";
+    }
+}
 /* Update Doctor */
 /* Delete Doctor */
 require_once('../app/partials/head.php');
