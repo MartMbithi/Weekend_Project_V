@@ -167,7 +167,7 @@ require_once('../app/partials/head.php');
                                             <label for="">Access Level</label>
                                             <select required name="user_access_level" class="form-control">
                                                 <option value="doctor">Doctor</option>
-                                                <option value="doctor">Administrator</option>
+                                                <option value="admin">Administrator</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-12">

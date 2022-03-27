@@ -75,8 +75,13 @@ require_once('../app/partials/head.php');
                                             <div class="form-group col-md-12">
                                                 <label for="">Access Level</label>
                                                 <select required name="user_access_level" class="form-control">
-                                                    <option value="doctor">Doctor</option>
-                                                    <option value="doctor">Administrator</option>
+                                                    <?php if ($user->user_access_level == 'doctor') { ?>
+                                                        <option value="doctor">Doctor</option>
+                                                        <option value="admin">Administrator</option>
+                                                    <?php } elseif ($user->user_access_level == 'admin') { ?>
+                                                        <option value="admin">Administrator</option>
+                                                        <option value="doctor">Doctor</option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                         </div>
