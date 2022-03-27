@@ -56,7 +56,7 @@ require_once('../app/partials/head.php');
                                     <div class="media-body">
                                         <p class="mb-1">Patients</p>
                                         <div class="d-flex flex-wrap">
-                                            <h2 class="fs-40 font-w600 text-white mb-0 mr-3">783k</h2>
+                                            <h2 class="fs-40 font-w600 text-white mb-0 mr-3"><?php echo $patients; ?></h2>
                                         </div>
                                     </div>
                                     <span class="border rounded-circle p-4">
@@ -75,7 +75,7 @@ require_once('../app/partials/head.php');
                                     <div class="media-body">
                                         <p class="mb-1">Doctors</p>
                                         <div class="d-flex flex-wrap">
-                                            <h2 class="fs-40 font-w600 text-white mb-0 mr-3">76</h2>
+                                            <h2 class="fs-40 font-w600 text-white mb-0 mr-3"><?php echo $doctors; ?></h2>
                                         </div>
                                     </div>
                                     <span class="border rounded-circle p-4">
@@ -94,7 +94,7 @@ require_once('../app/partials/head.php');
                                     <div class="media-body">
                                         <p class="mb-1">Appointments</p>
                                         <div class="d-flex flex-wrap">
-                                            <h2 class="fs-40 font-w600 text-white mb-0 mr-3">76</h2>
+                                            <h2 class="fs-40 font-w600 text-white mb-0 mr-3"><?php echo $appointments; ?></h2>
                                         </div>
                                     </div>
                                     <span class="border rounded-circle p-4">
@@ -126,7 +126,7 @@ require_once('../app/partials/head.php');
                                     <div class="media-body">
                                         <p class="mb-1">Revenue</p>
                                         <div class="d-flex flex-wrap">
-                                            <h2 class="fs-40 font-w600 text-white mb-0 mr-3">Ksh 56k</h2>
+                                            <h2 class="fs-40 font-w600 text-white mb-0 mr-3">Kes <?php echo number_format($bills, 2); ?></h2>
                                         </div>
                                     </div>
                                     <span class="border rounded-circle p-4">
@@ -157,7 +157,7 @@ require_once('../app/partials/head.php');
                                 <a href="reports_bills" class="text-primary font-w500">View more</a>
                             </div>
                             <div class="card-body">
-                                
+
                             </div>
                         </div>
                     </div>
