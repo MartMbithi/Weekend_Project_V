@@ -12,16 +12,16 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
     $query = "SELECT COUNT(*)  FROM users WHERE user_access_level = 'patient' ";
     $stmt = $mysqli->prepare($query);
     $stmt->execute();
-    $stmt->bind_result($patients);
+    $stmt->bind_result($reg_patients);
     $stmt->fetch();
     $stmt->close();
 
 
     /* 2. Available Doctors */
-    $query = "SELECT COUNT(*)  FROM users WHERE user_access_level = 'doctor' ";
+    $query = "SELECT COUNT(*)  FROM users WHERE user_access_level = 'doctor' || user_access_level = 'admin' ";
     $stmt = $mysqli->prepare($query);
     $stmt->execute();
-    $stmt->bind_result($doctors);
+    $stmt->bind_result($reg_doctors);
     $stmt->fetch();
     $stmt->close();
 
@@ -70,7 +70,7 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
     WHERE d.diag_patient_id = '$user_id' AND b.bill_status = 'Paid' ";
     $stmt = $mysqli->prepare($query);
     $stmt->execute();
-    $stmt->bind_result($pending_bills);
+    $stmt->bind_result($paid_bills);
     $stmt->fetch();
     $stmt->close();
 }

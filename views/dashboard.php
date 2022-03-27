@@ -56,7 +56,7 @@ require_once('../app/partials/head.php');
                                     <div class="media-body">
                                         <p class="mb-1">Patients</p>
                                         <div class="d-flex flex-wrap">
-                                            <h2 class="fs-40 font-w600 text-white mb-0 mr-3"><?php echo $patients; ?></h2>
+                                            <h2 class="fs-40 font-w600 text-white mb-0 mr-3"><?php echo $reg_patients; ?></h2>
                                         </div>
                                     </div>
                                     <span class="border rounded-circle p-4">
@@ -75,7 +75,7 @@ require_once('../app/partials/head.php');
                                     <div class="media-body">
                                         <p class="mb-1">Doctors</p>
                                         <div class="d-flex flex-wrap">
-                                            <h2 class="fs-40 font-w600 text-white mb-0 mr-3"><?php echo $doctors; ?></h2>
+                                            <h2 class="fs-40 font-w600 text-white mb-0 mr-3"><?php echo $reg_doctors; ?></h2>
                                         </div>
                                     </div>
                                     <span class="border rounded-circle p-4">
