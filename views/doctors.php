@@ -70,6 +70,20 @@ if (isset($_POST['update_doctor'])) {
 }
 
 /* Delete Doctor */
+if (isset($_POST['delete'])) {
+    $user_id  = $_POST['user_id'];
+
+    /* Persist */
+    $sql = "DELETE FROM users WHERE user_id = ?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $user_id);
+    if ($prepare) {
+        $success = "Deleted";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+
 require_once('../app/partials/head.php');
 ?>
 
