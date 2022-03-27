@@ -15,7 +15,7 @@ if (isset($_POST['add_doctor'])) {
     $user_access_level = $_POST['user_access_level'];
 
     /* Persist */
-    $sql = "INSERT INTOO users(user_number, user_name, user_email, user_phone, user_age, user_address, user_date_joined, user_password, user_access_level)
+    $sql = "INSERT INTO users(user_number, user_name, user_email, user_phone, user_age, user_address, user_date_added, user_password, user_access_level)
     VALUES(?,?,?,?,?,?,?,?,?)";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
