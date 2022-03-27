@@ -2,6 +2,27 @@
 session_start();
 require_once '../app/settings/config.php';
 require_once('../app/settings/codeGen.php');
+
+/* Update Access Levels */
+if (isset($_POST['update_access_levels'])) {
+    $user_id = $_GET['view'];
+    $user_access_level  = $_POST['user_access_level'];
+
+    /* Persist */
+    $sql = "UPDATE users SET user_access_level  = ? WHERE user_id =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ss',
+        $user_id,
+        $user_access_level
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Access Levels Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 
 ?>
