@@ -109,7 +109,7 @@ require_once('../app/partials/head.php');
                 <hr>
                 <div class="row">
                     <div class="col-xl-12">
-                        <table class="table shadow-hover  table-bordered mb-4 dataTablesCard fs-14">
+                        <table class="table shadow-hover mb-4 dataTablesCard fs-14">
                             <thead>
                                 <tr>
                                     <th>Number</th>
@@ -136,8 +136,9 @@ require_once('../app/partials/head.php');
                                         <td><?php echo $user->user_number; ?></td>
                                         <td><?php echo $user->user_name; ?></td>
                                         <td><?php echo $user->user_age; ?> Years</td>
-                                        <td><?php echo $users->user_phone; ?></td>
-                                        <td><?php echo $users->user_address; ?></td>
+                                        <td><?php echo $user->user_phone; ?></td>
+                                        <td><?php echo $user->user_email; ?></td>
+                                        <td><?php echo $user->user_address; ?></td>
                                         <td><?php echo date('d M Y', strtotime($user->user_date_added)); ?></td>
                                         <td>
                                             <?php if ($user->user_access_level == 'admin') { ?>
@@ -148,7 +149,7 @@ require_once('../app/partials/head.php');
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <div class="dropdown ml-auto text-right">
+                                                <div class="dropdown text-center">
                                                     <div class="btn-link" data-toggle="dropdown">
                                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="../../www.w3.org/2000/svg.html">
                                                             <path d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -159,7 +160,7 @@ require_once('../app/partials/head.php');
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class="dropdown-item" href="doctor?view=<?php echo $user->user_id; ?>">View Detail</a>
                                                         <a data-toggle="modal" class="dropdown-item" href="#update_<?php echo $user->user_id; ?>">Edit</a>
-                                                        <a data-toggle="modal" class="dropdown-item" href="#delete_<?php echo $user->user_id; ?>">Delete</a>
+                                                        <a data-toggle="modal" class="dropdown-item text-danger" href="#delete_<?php echo $user->user_id; ?>">Delete</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -188,19 +189,19 @@ require_once('../app/partials/head.php');
                                                                 <label for="">Full Names</label>
                                                                 <input type="text" required name="user_name" value="<?php echo $user->user_name; ?>" class="form-control">
                                                             </div>
-                                                            <div class="form-group col-md-6">
+                                                            <div class="form-group col-md-3">
                                                                 <label for="">Email</label>
                                                                 <input type="email" required name="user_email" value="<?php echo $user->user_email; ?>" class="form-control">
                                                             </div>
-                                                            <div class="form-group col-md-4">
+                                                            <div class="form-group col-md-3">
                                                                 <label for="">Contacts</label>
                                                                 <input type="text" required name="user_phone" value="<?php echo $user->user_phone; ?>" class="form-control">
                                                             </div>
-                                                            <div class="form-group col-md-4">
+                                                            <div class="form-group col-md-3">
                                                                 <label for="">Age</label>
                                                                 <input type="number" required name="user_age" value="<?php echo $user->user_age; ?>" class="form-control">
                                                             </div>
-                                                            <div class="form-group col-md-4">
+                                                            <div class="form-group col-md-3">
                                                                 <label for="">Access Level</label>
                                                                 <select required name="user_access_level" class="form-control">
                                                                     <?php if ($user->user_access_level == 'admin') { ?>
