@@ -13,8 +13,8 @@ if (isset($_POST['update_access_levels'])) {
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
         'ss',
-        $user_id,
-        $user_access_level
+        $user_access_level,
+        $user_id
     );
     $prepare->execute();
     if ($prepare) {
@@ -285,7 +285,7 @@ require_once('../app/partials/head.php');
                                             </div>
                                         </div>
                                         <div class="text-right">
-                                            <button type="submit" name="update_password" class="btn btn-success btn-roundedu">Submit</button>
+                                            <button type="submit" name="update_passwords" class="btn btn-success btn-roundedu">Submit</button>
                                         </div>
                                     </form>
                                 </div>
