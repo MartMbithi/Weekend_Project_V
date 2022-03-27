@@ -152,8 +152,37 @@ require_once('../app/partials/head.php');
                                 <h3 class="fs-20 mb-0 text-black">Recently Registered Patients</h3>
                                 <a href="patients" class="text-primary font-w500">View More</a>
                             </div>
+                            <hr>
                             <div class="card-body">
-
+                                <table class="table verticle-middle table-responsive-md">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Number</th>
+                                            <th scope="col">Full Names</th>
+                                            <th scope="col">Age</th>
+                                            <th scope="col">Contacts</th>
+                                            <th scope="col">Date Registered</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $ret = "SELECT * FROM users
+                                        WHERE user_access_level  = 'patient'";
+                                        $stmt = $mysqli->prepare($ret);
+                                        $stmt->execute(); //ok
+                                        $res = $stmt->get_result();
+                                        while ($user = $res->fetch_object()) {
+                                        ?>
+                                            <tr>
+                                                <td><span class="badge badge-rounded badge-success"><?php echo $user->user_number; ?></span></td>
+                                                <td><?php echo $user->user_name; ?></td>
+                                                <td><?php echo $user->user_age; ?> Years</td>
+                                                <td><?php echo $user->user_phone; ?></td>
+                                                <td><?php echo date('d M Y', strtotime($user->user_date_added)); ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -164,6 +193,7 @@ require_once('../app/partials/head.php');
                                 <h3 class="fs-20 mb-0 text-black">Bills Payment Logs</h3>
                                 <a href="reports_bills" class="text-primary font-w500">View more</a>
                             </div>
+                            <hr>
                             <div class="card-body">
                                 <div id="DZ_W_TimeLine" class="widget-timeline dz-scroll height370">
                                     <ul class="timeline">
