@@ -37,7 +37,38 @@ if (isset($_POST['add_doctor'])) {
         $err  = "Failed!, Please Try Again";
     }
 }
+
 /* Update Doctor */
+if (isset($_POST['update_doctor'])) {
+    $user_number = $_POST['user_number'];
+    $user_name = $_POST['user_name'];
+    $user_email = $_POST['user_email'];
+    $user_phone = $_POST['user_phone'];
+    $user_age = $_POST['user_age'];
+    $user_address = $_POST['user_address'];
+    $user_access_level = $_POST['user_access_level'];
+
+    /* Persist */
+    $sql = "UPDATE users SET user_name =?, user_email =?, user_phone =?, user_age =?, user_address =?, user_access_level =? 
+    WHERE user_number =?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sssssss',
+        $user_name,
+        $user_email,
+        $user_phone,
+        $user_age,
+        $user_address,
+        $user_access_level
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "$user_number - $user_name Details Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
+
 /* Delete Doctor */
 require_once('../app/partials/head.php');
 ?>
