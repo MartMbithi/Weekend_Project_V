@@ -291,6 +291,49 @@ require_once('../app/partials/head.php');
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header border-0 pb-0">
+                                    <h3 class="fs-20 mb-0 text-black">Recent Patients Diagonisis & Treatments</h3>
+                                </div>
+                                <hr>
+                                <div class="card-body">
+                                    <table class="table verticle-middle table-responsive-md">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Patient Details</th>
+                                                <th scope="col">Diagonisis Details</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $ret = "SELECT * FROM diagonisis d 
+                                            INNER JOIN users u ON u.user_id = d.diag_patient_id
+                                            WHERE d.diag_doctor_id = '$view'";
+                                            $stmt = $mysqli->prepare($ret);
+                                            $stmt->execute(); //ok
+                                            $res = $stmt->get_result();
+                                            while ($row = $res->fetch_object()) {
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        Patient No: <?php echo $row->user_number; ?><br>
+                                                        Patient Name: <?php echo $row->user_name; ?><br>
+                                                        Patient Phone: <?php echo $row->user_phone; ?><br>
+                                                        Patient Age: <?php echo $row->user_age; ?><br>
+                                                    </td>
+                                                    <td>
+                                                        Title: <?php echo $row->diag_title; ?> <br>
+                                                        Details: <?php echo $row->diag_details; ?> <br>
+                                                        Date: <?php echo $row->diag_date_created; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
