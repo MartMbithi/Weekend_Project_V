@@ -195,14 +195,14 @@ require_once('../app/partials/head.php');
                             <thead>
                                 <tr>
                                     <th>Appointment Details</th>
-                                    <th>Doctor Details</th>
+                                    <th>Patient Details</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $ret = "SELECT * FROM  appointments a
-                                INNER JOIN users u ON u.user_id = a.app_doc_id";
+                                INNER JOIN users u ON u.user_id = a.app_user_id";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
