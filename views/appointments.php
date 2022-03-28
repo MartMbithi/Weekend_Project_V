@@ -35,22 +35,17 @@ if (isset($_POST['add_appointment'])) {
 
 /* Update Appointment */
 if (isset($_POST['update_appointment'])) {
-    $app_ref_code = $_POST['app_ref_code'];
-    $app_doc_id = $_POST['app_doc_id'];
-    $app_status = $_POST['app_status'];
+    $app_id = $_POST['app_id'];
     $app_date = $_POST['app_date'];
     $app_details = $_POST['app_details'];
 
     /* Persist */
-    $sql = "UPDATE appointments SET app_doc_id =?, app_status =?, app_date =?, app_details =? WHERE app_doc_id = ?";
+    $sql = "UPDATE appointments SET  app_date =?, app_details =? WHERE app_id = '$app_id'";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'sssss',
-        $app_doc_id,
-        $app_status,
+        'ss',
         $app_date,
         $app_details,
-        $app_ref_code
     );
     $prepare->execute();
     if ($prepare) {
@@ -200,14 +195,14 @@ require_once('../app/partials/head.php');
                             <thead>
                                 <tr>
                                     <th>Appointment Details</th>
-                                    <th>Patient Details</th>
+                                    <th>Doctor Details</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $ret = "SELECT * FROM  appointments a
-                                INNER JOIN users u ON u.user_id = a.app_user_id";
+                                INNER JOIN users u ON u.user_id = a.app_doc_id";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
@@ -215,8 +210,13 @@ require_once('../app/partials/head.php');
                                 ?>
                                     <tr>
                                         <td>
-                                            REF #: <?php echo $row->app_ref; ?> <br>
-                                            Status: <?php echo $row->app_status; ?><br>
+                                            REF #: <?php echo $row->app_ref_code; ?> <br>
+                                            Status:
+                                            <?php if ($row->app_status == 'Pending') { ?>
+                                                <span class="text-danger">Pending</span><br>
+                                            <?php } elseif ($row->app_status == 'Approved') { ?>
+                                                <span class="text-success">Approved</span><br>
+                                            <?php } ?>
                                             Date: <?php echo date('d M Y', strtotime($row->app_date)); ?>
                                         </td>
                                         <td>
@@ -257,6 +257,23 @@ require_once('../app/partials/head.php');
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
+                                                    <form method="post" enctype="multipart/form-data" role="form">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-12">
+                                                                <label for="">Appointment Date</label>
+                                                                <!-- Hide This -->
+                                                                <input type="hidden" value="<?php echo $row->app_id; ?>" required name="app_id" class="form-control">
+                                                                <input type="date" value="<?php echo $row->app_date; ?>" id="date-format" required name="app_date" class="form-control">
+                                                            </div>
+                                                            <div class="form-group col-md-12">
+                                                                <label for="">Appointment Details</label>
+                                                                <textarea type="text" required name="app_details" rows="5" class="form-control"><?php echo $row->app_details; ?></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-right">
+                                                            <button type="submit" name="update_appointment" class="btn btn-success btn-roundedu">Update Appointment</button>
+                                                        </div>
+                                                    </form>
 
                                                 </div>
                                             </div>
