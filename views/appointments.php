@@ -305,6 +305,31 @@ require_once('../app/partials/head.php');
                                         </div>
                                     </div>
                                     <!-- End Modal -->
+
+                                    <!-- Approve Modal -->
+                                    <div class="modal fade" id="approve_<?php echo $row->app_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">CONFIRM APPROVAL</h5>
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        <span>&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form method="POST">
+                                                    <div class="modal-body text-center text-danger">
+                                                        <h4>Apprve <?php echo $row->app_ref_code; ?>? </h4>
+                                                        <br>
+                                                        <!-- Hide This -->
+                                                        <input type="hidden" name="app_id" value="<?php echo $row->app_id; ?>">
+                                                        <button type="button" class="text-center btn btn-success btn-roundedu" data-dismiss="modal">No</button>
+                                                        <input type="submit" name="approve" value="Approve" class="text-center btn btn-danger btn-roundedu">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Modal -->
                                 <?php } ?>
                             </tbody>
                         </table>
