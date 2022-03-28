@@ -199,33 +199,31 @@ require_once('../app/partials/head.php');
                         <table class="table shadow-hover mb-4 dataTablesCard fs-14">
                             <thead>
                                 <tr>
-                                    <th>Number</th>
-                                    <th>Full Names</th>
-                                    <th>Age</th>
-                                    <th>Contacts</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
-                                    <th>Date Registered</th>
+                                    <th>Appointment Details</th>
+                                    <th>Patient Details</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $ret = "SELECT * FROM users
-                                WHERE user_access_level  = 'patient' ";
+                                $ret = "SELECT * FROM  appointments a
+                                INNER JOIN users u ON u.user_id = a.app_user_id";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
-                                while ($user = $res->fetch_object()) {
+                                while ($row = $res->fetch_object()) {
                                 ?>
                                     <tr>
-                                        <td><?php echo $user->user_number; ?></td>
-                                        <td><?php echo $user->user_name; ?></td>
-                                        <td><?php echo $user->user_age; ?> Years</td>
-                                        <td><?php echo $user->user_phone; ?></td>
-                                        <td><?php echo $user->user_email; ?></td>
-                                        <td><?php echo $user->user_address; ?></td>
-                                        <td><?php echo date('d M Y', strtotime($user->user_date_added)); ?></td>
+                                        <td>
+                                            REF #: <?php echo $row->app_ref; ?> <br>
+                                            Status: <?php echo $row->app_status; ?><br>
+                                            Date: <?php echo date('d M Y', strtotime($row->app_date)); ?>
+                                        </td>
+                                        <td>
+                                            Number: <?php echo $row->user_number; ?><br>
+                                            Name: <?php echo $row->user_name; ?><br>
+                                            Contacts: <?php echo $row->user_phone; ?>
+                                        </td>
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="dropdown text-center">
@@ -237,58 +235,29 @@ require_once('../app/partials/head.php');
                                                         </svg>
                                                     </div>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="patient?view=<?php echo $user->user_id; ?>">View Detail</a>
-                                                        <a data-toggle="modal" class="dropdown-item" href="#update_<?php echo $user->user_id; ?>">Edit</a>
-                                                        <a data-toggle="modal" class="dropdown-item text-danger" href="#delete_<?php echo $user->user_id; ?>">Delete</a>
+                                                        <a class="dropdown-item" href="appointment?view=<?php echo $row->app_id; ?>">View Detail</a>
+                                                        <a data-toggle="modal" class="dropdown-item" href="#update_<?php echo $row->app_id; ?>">Edit</a>
+                                                        <a data-toggle="modal" class="dropdown-item" href="#approve_<?php echo $row->app_id; ?>">Approve</a>
+                                                        <a data-toggle="modal" class="dropdown-item text-danger" href="#delete_<?php echo $row->app_id; ?>">Delete</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
                                     <!-- Update Modal -->
-                                    <div class="modal fade fixed-right" id="update_<?php echo $user->user_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal fade fixed-right" id="update_<?php echo $row->app_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog  modal-xl" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header align-items-center">
                                                     <div class="text-bold">
-                                                        <h6 class="text-bold">Update <?php echo $user->user_name; ?> Details</h6>
+                                                        <h6 class="text-bold">Update Appointment Details</h6>
                                                     </div>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post" enctype="multipart/form-data" role="form">
-                                                        <div class="row">
-                                                            <div class="form-group col-md-4">
-                                                                <label for="">Number</label>
-                                                                <input type="text" readonly required name="user_number" value="<?php echo $user->user_number; ?>" readonly class="form-control">
-                                                            </div>
-                                                            <div class="form-group col-md-8">
-                                                                <label for="">Full Names</label>
-                                                                <input type="text" required name="user_name" value="<?php echo $user->user_name; ?>" class="form-control">
-                                                            </div>
-                                                            <div class="form-group col-md-4">
-                                                                <label for="">Email</label>
-                                                                <input type="email" required name="user_email" value="<?php echo $user->user_email; ?>" class="form-control">
-                                                            </div>
-                                                            <div class="form-group col-md-4">
-                                                                <label for="">Contacts</label>
-                                                                <input type="text" required name="user_phone" value="<?php echo $user->user_phone; ?>" class="form-control">
-                                                            </div>
-                                                            <div class="form-group col-md-4">
-                                                                <label for="">Age</label>
-                                                                <input type="number" required name="user_age" value="<?php echo $user->user_age; ?>" class="form-control">
-                                                            </div>
-                                                            <div class="form-group col-md-12">
-                                                                <label for="">Address</label>
-                                                                <textarea type="text" required name="user_address" class="form-control"><?php echo $user->user_address; ?></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <button type="submit" name="update_patient" class="btn btn-success btn-roundedu">Update Patient</button>
-                                                        </div>
-                                                    </form>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -296,7 +265,7 @@ require_once('../app/partials/head.php');
                                     <!-- End Modal -->
 
                                     <!-- Delete Modal -->
-                                    <div class="modal fade" id="delete_<?php echo $user->user_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="delete_<?php echo $row->app_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -307,10 +276,10 @@ require_once('../app/partials/head.php');
                                                 </div>
                                                 <form method="POST">
                                                     <div class="modal-body text-center text-danger">
-                                                        <h4>Delete <?php echo $user->user_name; ?> Details? </h4>
+                                                        <h4>Delete <?php echo $row->app_ref_code; ?> Details? </h4>
                                                         <br>
                                                         <!-- Hide This -->
-                                                        <input type="hidden" name="user_id" value="<?php echo $user->user_id; ?>">
+                                                        <input type="hidden" name="app_id" value="<?php echo $row->app_id; ?>">
                                                         <button type="button" class="text-center btn btn-success btn-roundedu" data-dismiss="modal">No</button>
                                                         <input type="submit" name="delete" value="Delete" class="text-center btn btn-danger btn-roundedu">
                                                     </div>
