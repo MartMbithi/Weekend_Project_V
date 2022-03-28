@@ -145,7 +145,7 @@ require_once('../app/partials/head.php');
                     <!-- End Modal -->
                     <div class="row">
                         <div class="col-xl-3 col-lg-4 col-xxl-4">
-                            <div class="card">
+                            <div class="card border border-success">
                                 <div class="card-header border-0 pb-0">
                                     <h4 class="fs-20 font-w600 mb-0">Appointments</h4>
                                 </div>
@@ -184,7 +184,7 @@ require_once('../app/partials/head.php');
                             </div>
                         </div>
                         <div class="col-xl-6 col-xxl-8 col-lg-8">
-                            <div class="card">
+                            <div class="card border border-success">
                                 <div class="card-body">
                                     <div class="media d-sm-flex d-block text-center text-sm-left pb-4 mb-4 border-bottom">
                                         <img alt="image" class="rounded mr-sm-4 mr-0" width="130" src="../assets/images/no-profile.png">
@@ -269,7 +269,7 @@ require_once('../app/partials/head.php');
                             </div>
                         </div>
                         <div class="col-xl-3 col-xxl-12">
-                            <div class="card abilities-chart">
+                            <div class="card abilities-chart border border-success">
                                 <div class="card-header border-0 pb-0">
                                     <h4 class="fs-20 font-w600">Update Password</h4>
                                 </div>
@@ -294,7 +294,7 @@ require_once('../app/partials/head.php');
                             </div>
                         </div>
                         <div class="col-12">
-                            <div class="card">
+                            <div class="card border border-success">
                                 <div class="card-header border-0 pb-0">
                                     <h3 class="fs-20 mb-0 text-black">Recent Patients Diagonisis & Treatments</h3>
                                 </div>

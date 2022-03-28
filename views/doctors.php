@@ -188,7 +188,7 @@ require_once('../app/partials/head.php');
                 <!-- End Modal -->
                 <hr>
                 <div class="row">
-                    <div class="col-xl-12">
+                    <div class="col-xl-12 ">
                         <table class="table shadow-hover mb-4 dataTablesCard fs-14">
                             <thead>
                                 <tr>
