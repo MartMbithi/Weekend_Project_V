@@ -74,7 +74,22 @@ if (isset($_POST['delete_appointment'])) {
         $err = "Failed!, Please Try Again Later";
     }
 }
+
 /* Approve */
+if (isset($_POST['approve'])) {
+    $app_id = $_POST['app_id'];
+
+    /* persist */
+    $sql = "UPDATE appointments SET app_status = 'Approved' WHERE app_id = ?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $app_id);
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Appointment Approved";
+    } else {
+        $err = "Failed!, Please Try Again Later";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
