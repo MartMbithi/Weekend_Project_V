@@ -4,8 +4,9 @@ require_once '../app/settings/config.php';
 require_once('../app/settings/checklogin.php');
 check_login();
 require_once('../app/settings/codeGen.php');
-/* Add Doctor */
-if (isset($_POST['add_doctor'])) {
+
+/* Add */
+if (isset($_POST['add_patient'])) {
     $user_number = $_POST['user_number'];
     $user_name = $_POST['user_name'];
     $user_email = $_POST['user_email'];
@@ -14,7 +15,7 @@ if (isset($_POST['add_doctor'])) {
     $user_address = $_POST['user_address'];
     $user_date_joined = date('d M Y');
     $user_password = sha1(md5($_POST['user_password']));
-    $user_access_level = $_POST['user_access_level'];
+    $user_access_level = 'patient';
 
     /* Persist */
     $sql = "INSERT INTO users(user_number, user_name, user_email, user_phone, user_age, user_address, user_date_added, user_password, user_access_level)
@@ -40,8 +41,8 @@ if (isset($_POST['add_doctor'])) {
     }
 }
 
-/* Update Doctor */
-if (isset($_POST['update_doctor'])) {
+/* Update Patient */
+if (isset($_POST['update_patient'])) {
     $user_number = $_POST['user_number'];
     $user_name = $_POST['user_name'];
     $user_email = $_POST['user_email'];
@@ -64,7 +65,7 @@ if (isset($_POST['update_doctor'])) {
     );
     $prepare->execute();
     if ($prepare) {
-        $success = "$user_number - $user_name , $user_access_level Updated";
+        $success = "$user_number - $user_name  Updated";
     } else {
         $err = "Failed!, Please Try Again";
     }
@@ -120,11 +121,11 @@ require_once('../app/partials/head.php');
             <div class="container-fluid">
                 <div class="form-head d-flex mb-3 mb-md-4 align-items-start">
                     <div class="mr-auto d-none d-lg-block">
-                        <h3 class="text-black font-w600">Doctors</h3>
+                        <h3 class="text-black font-w600">Patients</h3>
                     </div>
                 </div>
                 <div class="text-right">
-                    <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary btn-roundedu"><i class="fas fa-user-md"></i> Add New Doctor</button>
+                    <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary btn-roundedu"><i class="fas fa-user-md"></i> Add New Patient</button>
                 </div>
                 <!-- Register Modal -->
                 <div class="modal fade fixed-right" id="add_modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -132,7 +133,7 @@ require_once('../app/partials/head.php');
                         <div class="modal-content">
                             <div class="modal-header align-items-center">
                                 <div class="text-center">
-                                    <h6 class="mb-0 text-bold">Register New Doctor</h6>
+                                    <h6 class="mb-0 text-bold">Register New Patient</h6>
                                 </div>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -149,28 +150,21 @@ require_once('../app/partials/head.php');
                                             <label for="">Full Names</label>
                                             <input type="text" required name="user_name" class="form-control">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-3">
                                             <label for="">Email</label>
                                             <input type="email" required name="user_email" class="form-control">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-3">
                                             <label for="">Login Password</label>
                                             <input type="password" required name="user_password" class="form-control">
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-3">
                                             <label for="">Contacts</label>
                                             <input type="text" required name="user_phone" class="form-control">
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-3">
                                             <label for="">Age</label>
                                             <input type="number" required name="user_age" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="">Access Level</label>
-                                            <select required name="user_access_level" class="form-control">
-                                                <option value="doctor">Doctor</option>
-                                                <option value="admin">Administrator</option>
-                                            </select>
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label for="">Address</label>
@@ -178,7 +172,7 @@ require_once('../app/partials/head.php');
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button type="submit" name="add_doctor" class="btn btn-success btn-roundedu">Register Doctor</button>
+                                        <button type="submit" name="add_patient" class="btn btn-success btn-roundedu">Register Doctor</button>
                                     </div>
                                 </form>
                             </div>
@@ -199,14 +193,13 @@ require_once('../app/partials/head.php');
                                     <th>Email</th>
                                     <th>Address</th>
                                     <th>Date Registered</th>
-                                    <th>Access Level</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $ret = "SELECT * FROM users
-                                WHERE user_access_level  = 'doctor' ||  user_access_level  = 'admin'  ";
+                                WHERE user_access_level  = 'patient' ";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
@@ -221,13 +214,6 @@ require_once('../app/partials/head.php');
                                         <td><?php echo $user->user_address; ?></td>
                                         <td><?php echo date('d M Y', strtotime($user->user_date_added)); ?></td>
                                         <td>
-                                            <?php if ($user->user_access_level == 'admin') { ?>
-                                                <span class="btn btn-primary light btn-rounded btn-sm text-nowrap">Administrator</span>
-                                            <?php } elseif ($user->user_access_level == 'doctor') { ?>
-                                                <span class="btn btn-primary light btn-rounded btn-sm text-nowrap">Doctor</span>
-                                            <?php } ?>
-                                        </td>
-                                        <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="dropdown text-center">
                                                     <div class="btn-link" data-toggle="dropdown">
@@ -238,7 +224,7 @@ require_once('../app/partials/head.php');
                                                         </svg>
                                                     </div>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="doctor?view=<?php echo $user->user_id; ?>">View Detail</a>
+                                                        <a class="dropdown-item" href="patient?view=<?php echo $user->user_id; ?>">View Detail</a>
                                                         <a data-toggle="modal" class="dropdown-item" href="#update_<?php echo $user->user_id; ?>">Edit</a>
                                                         <a data-toggle="modal" class="dropdown-item text-danger" href="#delete_<?php echo $user->user_id; ?>">Delete</a>
                                                     </div>
@@ -287,7 +273,7 @@ require_once('../app/partials/head.php');
                                                             </div>
                                                         </div>
                                                         <div class="text-right">
-                                                            <button type="submit" name="update_doctor" class="btn btn-success btn-roundedu">Update Doctor</button>
+                                                            <button type="submit" name="update_patient" class="btn btn-success btn-roundedu">Update Doctor</button>
                                                         </div>
                                                     </form>
                                                 </div>

@@ -64,7 +64,7 @@ if (isset($_POST['update_doctor'])) {
     );
     $prepare->execute();
     if ($prepare) {
-        $success = "$user_number - $user_name , $user_access_level Updated";
+        $success = "$user_number - $user_name Updated";
     } else {
         $err = "Failed!, Please Try Again";
     }
