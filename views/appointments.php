@@ -9,7 +9,7 @@ if (isset($_POST['add_appointment'])) {
     $app_ref_code = $a . $b;
     $app_doc_id = $_POST['app_doc_id'];
     $app_user_id = $_POST['app_user_id'];
-    $app_status = $_POST['app_status'];
+    $app_status = 'Pending';
     $app_date = $_POST['app_date'];
     $app_details = $_POST['app_details'];
 
@@ -124,11 +124,11 @@ require_once('../app/partials/head.php');
             <div class="container-fluid">
                 <div class="form-head d-flex mb-3 mb-md-4 align-items-start">
                     <div class="mr-auto d-none d-lg-block">
-                        <h3 class="text-black font-w600">Patients</h3>
+                        <h3 class="text-black font-w600">Appointments</h3>
                     </div>
                 </div>
                 <div class="text-right">
-                    <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary btn-roundedu"><i class="fas fa-users"></i> Add New Patient</button>
+                    <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary btn-roundedu"><i class="fas fa-calendar"></i> Add New Appointment</button>
                 </div>
                 <!-- Register Modal -->
                 <div class="modal fade fixed-right" id="add_modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -136,7 +136,7 @@ require_once('../app/partials/head.php');
                         <div class="modal-content">
                             <div class="modal-header align-items-center">
                                 <div class="text-center">
-                                    <h6 class="mb-0 text-bold">Register New Patient</h6>
+                                    <h6 class="mb-0 text-bold">Register New Appoinement</h6>
                                 </div>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -145,37 +145,47 @@ require_once('../app/partials/head.php');
                             <div class="modal-body">
                                 <form method="post" enctype="multipart/form-data" role="form">
                                     <div class="row">
-                                        <div class="form-group col-md-4">
-                                            <label for="">Number</label>
-                                            <input type="text" readonly required name="user_number" value="<?php echo $a . $b; ?>" readonly class="form-control">
+                                        <div class="form-group col-md-12">
+                                            <label for="">Doctor Full Names</label>
+                                            <select type="text" required name="app_doc_id" class="form-control">
+                                                <?php
+                                                $ret = "SELECT * FROM users
+                                                WHERE user_access_level  = 'admin' || user_access_level = 'doctor' ";
+                                                $stmt = $mysqli->prepare($ret);
+                                                $stmt->execute(); //ok
+                                                $res = $stmt->get_result();
+                                                while ($user = $res->fetch_object()) {
+                                                ?>
+                                                    <option value="<?php echo $user->user_id; ?>"><?php echo $user->user_number . ' - ' . $user->user_name; ?></option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-8">
-                                            <label for="">Full Names</label>
-                                            <input type="text" required name="user_name" class="form-control">
+                                            <label for="">Patient Full Names</label>
+                                            <select type="text" required name="app_user_id" class="form-control">
+                                                <?php
+                                                $ret = "SELECT * FROM users
+                                                WHERE user_access_level  = 'patient'";
+                                                $stmt = $mysqli->prepare($ret);
+                                                $stmt->execute(); //ok
+                                                $res = $stmt->get_result();
+                                                while ($patient = $res->fetch_object()) {
+                                                ?>
+                                                    <option value="<?php echo $patient->user_id; ?>"><?php echo $patient->user_id; ?></option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
-                                        <div class="form-group col-md-3">
-                                            <label for="">Email</label>
-                                            <input type="email" required name="user_email" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label for="">Login Password</label>
-                                            <input type="password" required name="user_password" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label for="">Contacts</label>
-                                            <input type="text" required name="user_phone" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label for="">Age</label>
-                                            <input type="number" required name="user_age" class="form-control">
+                                        <div class="form-group col-md-4">
+                                            <label for="">Appointment Date</label>
+                                            <input type="email" required name="app_date" class="form-control">
                                         </div>
                                         <div class="form-group col-md-12">
-                                            <label for="">Address</label>
-                                            <textarea type="text" required name="user_address" class="form-control"></textarea>
+                                            <label for="">Appointment Details</label>
+                                            <textarea type="text" required name="app_details" class="form-control"></textarea>
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button type="submit" name="add_patient" class="btn btn-success btn-roundedu">Register Patient</button>
+                                        <button type="submit" name="add_appointment" class="btn btn-success btn-roundedu">Submit Appointment</button>
                                     </div>
                                 </form>
                             </div>
