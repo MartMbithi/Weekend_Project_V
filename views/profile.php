@@ -2,6 +2,8 @@
 session_start();
 require_once '../app/settings/config.php';
 require_once('../app/settings/checklogin.php');
+check_login();
+require_once('../app/settings/checklogin.php');
 
 /* Update Profile */
 if (isset($_POST['update_profile'])) {

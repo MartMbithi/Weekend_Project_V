@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once '../app/settings/config.php';
+require_once('../app/settings/checklogin.php');
+check_login();
 require_once('../app/helpers/analytics.php');
 require_once('../app/partials/head.php');
 ?>
@@ -174,7 +176,7 @@ require_once('../app/partials/head.php');
                                         while ($user = $res->fetch_object()) {
                                         ?>
                                             <tr>
-                                                <td><span class="badge badge-rounded badge-success"><?php echo $user->user_number; ?></span></td>
+                                                <td><a href="patient?view=<?php echo $user->user_id; ?>" class="badge badge-rounded badge-success"><?php echo $user->user_number; ?></a></td>
                                                 <td><?php echo $user->user_name; ?></td>
                                                 <td><?php echo $user->user_age; ?> Years</td>
                                                 <td><?php echo $user->user_phone; ?></td>

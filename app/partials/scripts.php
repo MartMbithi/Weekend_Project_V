@@ -7,6 +7,14 @@
 <script src="../assets/vendor/toastr/toastr.min.js"></script>
 <!-- Custom File  -->
 <script src="../assets/js/bs-custom-file-input.min.js"></script>
+<!-- momment js is must -->
+<script src="../assets/vendor/moment/moment.min.js"></script>
+<!-- pickdate -->
+<script src="../assets/vendor/pickadate/picker.js"></script>
+<script src="../assets/vendor/pickadate/picker.time.js"></script>
+<script src="../assets/vendor/pickadate/picker.date.js"></script>
+<!-- Pickdate -->
+<script src="../assets/js/plugins-init/pickadate-init.js"></script>
 <!-- Data Tables CDN -->
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
