@@ -25,4 +25,7 @@
     <link rel="stylesheet" href="../assets/vendor/toastr/toastr.min.css">
     <link href="../assets/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link href="../assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <!-- Pick date -->
+    <link rel="stylesheet" href="../assets/vendor/pickadate/themes/default.css">
+    <link rel="stylesheet" href="../assets/vendor/pickadate/themes/default.date.css">
 </head>

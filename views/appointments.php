@@ -171,17 +171,17 @@ require_once('../app/partials/head.php');
                                                 $res = $stmt->get_result();
                                                 while ($patient = $res->fetch_object()) {
                                                 ?>
-                                                    <option value="<?php echo $patient->user_id; ?>"><?php echo $patient->user_id; ?></option>
+                                                    <option value="<?php echo $patient->user_id; ?>"><?php echo $patient->user_number . ' ' . $patient->user_name; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="">Appointment Date</label>
-                                            <input type="email" required name="app_date" class="form-control">
+                                            <input type="date" id="date-format" required name="app_date" class="form-control">
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label for="">Appointment Details</label>
-                                            <textarea type="text" required name="app_details" class="form-control"></textarea>
+                                            <textarea type="text" required name="app_details" rows="5" class="form-control"></textarea>
                                         </div>
                                     </div>
                                     <div class="text-right">
