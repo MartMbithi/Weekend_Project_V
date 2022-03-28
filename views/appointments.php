@@ -60,7 +60,20 @@ if (isset($_POST['update_appointment'])) {
     }
 }
 /* Delete Appointment */
-if()
+if (isset($_POST['delete_appointment'])) {
+    $app_id = $_POST['app_id'];
+
+    /* Delete */
+    $sql = "DELETE FROM appointments WHERE app_id = ?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $app_id);
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Deleted";
+    } else {
+        $err = "Failed!, Please Try Again Later";
+    }
+}
 /* Approve */
 require_once('../app/partials/head.php');
 ?>
