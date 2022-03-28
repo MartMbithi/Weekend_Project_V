@@ -298,7 +298,7 @@ require_once('../app/partials/head.php');
                                                         <!-- Hide This -->
                                                         <input type="hidden" name="app_id" value="<?php echo $row->app_id; ?>">
                                                         <button type="button" class="text-center btn btn-success btn-roundedu" data-dismiss="modal">No</button>
-                                                        <input type="submit" name="delete" value="Delete" class="text-center btn btn-danger btn-roundedu">
+                                                        <input type="submit" name="delete_appointment" value="Delete" class="text-center btn btn-danger btn-roundedu">
                                                     </div>
                                                 </form>
                                             </div>
