@@ -49,10 +49,24 @@ require_once('../app/partials/head.php');
                     <div class="page-titles">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item"><a href="patients">Appointments</a></li>
+                            <li class="breadcrumb-item"><a href="appointments">Appointments</a></li>
                             <li class="breadcrumb-item"><a href="javascript:void(0)"><?php echo $row->app_ref_code; ?></a></li>
-
                         </ol>
+                    </div>
+                    <div class="d-md-flex d-block mb-3 align-items-center">
+                        <?php if ($row->app_status == 'Pending') { ?>
+                            <div class="dropdown d-inline-block ml-auto mr-2">
+                                <button type="button" class="btn btn-outline-danger btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="las la-times scale5 mr-3"></i>Pending
+                                </button>
+                            </div>
+                        <?php } elseif ($row->app_status == 'Approved') { ?>
+                            <div class="dropdown d-inline-block ml-auto mr-2">
+                                <button type="button" class="btn btn-outline-primary btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="las la-check-circle scale5 mr-3"></i>Approved
+                                </button>
+                            </div>
+                        <?php } ?>
                     </div>
                     <!-- End Modal -->
                     <div class="row">
@@ -242,6 +256,13 @@ require_once('../app/partials/head.php');
                                     <p>
                                         <?php echo $row->app_details; ?>
                                     </p>
+                                    <hr>
+                                    <button type="button" class="btn btn-outline-primary btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="las la-tag scale5 mr-3"></i>Appointment REF #: <?php echo $row->app_ref_code; ?>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="las la-calendar scale5 mr-3"></i>Appointment Date: <?php echo date('d M Y', strtotime($row->app_date)); ?>
+                                    </button>
                                 </div>
                             </div>
                         </div>
