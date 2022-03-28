@@ -7,7 +7,7 @@ require_once('../app/settings/codeGen.php');
 /* Add Appointment */
 if (isset($_POST['add_appointment'])) {
     $app_ref_code = $a . $b;
-    $app_doc_id = $_POST['app_cdoc_id'];
+    $app_doc_id = $_POST['app_doc_id'];
     $app_user_id = $_POST['app_user_id'];
     $app_status = $_POST['app_status'];
     $app_date = $_POST['app_date'];
@@ -32,8 +32,35 @@ if (isset($_POST['add_appointment'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
 /* Update Appointment */
+if (isset($_POST['update_appointment'])) {
+    $app_ref_code = $_POST['app_ref_code'];
+    $app_doc_id = $_POST['app_doc_id'];
+    $app_status = $_POST['app_status'];
+    $app_date = $_POST['app_date'];
+    $app_details = $_POST['app_details'];
+
+    /* Persist */
+    $sql = "UPDATE appointments SET app_doc_id =?, app_status =?, app_date =?, app_details =? WHERE app_doc_id = ?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'sssss',
+        $app_doc_id,
+        $app_status,
+        $app_date,
+        $app_details,
+        $app_ref_code
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Appointment Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 /* Delete Appointment */
+if()
 /* Approve */
 require_once('../app/partials/head.php');
 ?>
