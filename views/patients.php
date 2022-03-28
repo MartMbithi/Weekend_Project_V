@@ -125,7 +125,7 @@ require_once('../app/partials/head.php');
                     </div>
                 </div>
                 <div class="text-right">
-                    <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary btn-roundedu"><i class="fas fa-user-md"></i> Add New Patient</button>
+                    <button type="button" data-toggle="modal" data-target="#add_modal" class="btn btn-primary btn-roundedu"><i class="fas fa-users"></i> Add New Patient</button>
                 </div>
                 <!-- Register Modal -->
                 <div class="modal fade fixed-right" id="add_modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -172,7 +172,7 @@ require_once('../app/partials/head.php');
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <button type="submit" name="add_patient" class="btn btn-success btn-roundedu">Register Doctor</button>
+                                        <button type="submit" name="add_patient" class="btn btn-success btn-roundedu">Register Patient</button>
                                     </div>
                                 </form>
                             </div>
@@ -273,7 +273,7 @@ require_once('../app/partials/head.php');
                                                             </div>
                                                         </div>
                                                         <div class="text-right">
-                                                            <button type="submit" name="update_patient" class="btn btn-success btn-roundedu">Update Doctor</button>
+                                                            <button type="submit" name="update_patient" class="btn btn-success btn-roundedu">Update Patient</button>
                                                         </div>
                                                     </form>
                                                 </div>
