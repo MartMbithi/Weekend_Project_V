@@ -53,7 +53,7 @@ if (isset($_POST['update_medical_record'])) {
     $sql = "UPDATE diagonisis SET diag_title =?, diag_details =?, diag_date_created =?, diag_cost =? WHERE diag_id = '$diad_id'";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'sssss',
+        'ssss',
         $diag_title,
         $diag_details,
         $diag_date_created,

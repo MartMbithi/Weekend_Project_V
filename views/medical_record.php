@@ -249,6 +249,14 @@ require_once('../app/partials/head.php');
                                     <button type="button" class="btn btn-outline-primary btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
                                         <i class="las la-calendar scale5 mr-3"></i>Date: <?php echo date('d M Y', strtotime($row->diag_date_created)); ?>
                                     </button>
+                                    <button type="button" class="btn btn-outline-primary btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="las la-money-bill scale5 mr-3"></i>Cost: Ksh <?php echo number_format($row->diag_cost, 2); ?>
+                                    </button>
+                                    <?php if ($row->diag_payment_status == 'Pending') { ?>
+                                        <button type="button" class="btn btn-outline-danger btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="las la-funnel-dollar scale5 mr-3"></i>Payment Status: Pending
+                                        </button>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
