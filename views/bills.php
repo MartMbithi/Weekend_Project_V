@@ -30,7 +30,7 @@ if (isset($_POST['update'])) {
 /* Delete Payment Log */
 if (isset($_POST['delete'])) {
     $bill_id = $_POST['bill_id'];
-    $bill_diag_id = $_POST['diag_id'];g
+    $bill_diag_id = $_POST['diag_id'];
 
     /* Delete */
     $sql = "DELETE FROM bills WHERE bill_id = '$bill_id'";
