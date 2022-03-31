@@ -86,7 +86,7 @@ if (isset($_POST['delete_medical_record'])) {
 /* Add Payment */
 if (isset($_POST['pay_bill'])) {
     $bill_ref_code = $paycode;
-    $bill_diag_id = $_POST['diag_id'];
+    $bill_diag_id = $_POST['bill_diag_id'];
     $bill_amount  = $_POST['bill_amount'];
     $bill_date_added  = date('d M Y');
     $bill_added_by = $_SESSION['user_id'];
@@ -268,7 +268,7 @@ require_once('../app/partials/head.php');
                                                     </button>
                                                 <?php } else { ?>
                                                     <button type="button" class="btn btn-outline-success btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
-                                                        <i class="las la-funnel-dollar scale5 mr-3"></i>Paid
+                                                        <i class="las la-hand-holding-usd scale5 mr-3"></i> Paid
                                                     </button>
                                                 <?php } ?>
                                             </td>
