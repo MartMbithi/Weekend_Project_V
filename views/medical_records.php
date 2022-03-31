@@ -42,14 +42,13 @@ if (isset($_POST['update_medical_record'])) {
     $diag_date_created = $_POST['diag_date_created'];
 
     /* Add Details */
-    $sql = "UPDATE diagonisis SET diag_title =?, diag_details =?, diag_date_created =? WHERE diag_id = ?";
+    $sql = "UPDATE diagonisis SET diag_title =?, diag_details =?, diag_date_created =? WHERE diag_id = '$diad_id'";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'ssss',
+        'sss',
         $diag_title,
         $diag_details,
-        $diag_date_created,
-        $diag_id
+        $diag_date_created
     );
     $prepare->execute();
     if ($prepare) {
@@ -67,6 +66,7 @@ if (isset($_POST['delete_medical_record'])) {
     $sql = "DELETE FROM diagonisis WHERE diag_id = ?";
     $prepare  = $mysqli->prepare($sql);
     $bind = $prepare->bind_param('s', $diag_id);
+    $prepare->execute();
     if ($prepare) {
         $success = "Medical Record Deleted";
     } else {
@@ -246,7 +246,26 @@ require_once('../app/partials/head.php');
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-
+                                                        <form method="post" enctype="multipart/form-data" role="form">
+                                                            <div class="row">
+                                                                <div class="form-group col-md-8">
+                                                                    <label for="">Title</label>
+                                                                    <input type="text" required value="<?php echo $row->diag_title; ?>" name="diag_title" class="form-control">
+                                                                    <input type="hidden" required value="<?php echo $row->diag_id; ?>" name="diag_id" class="form-control">
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="">Diagnosis Date</label>
+                                                                    <input type="date" id="date-format" value="<?php echo $row->diag_date_created; ?>" required name="diag_date_created" class="form-control">
+                                                                </div>
+                                                                <div class="form-group col-md-12">
+                                                                    <label for="">Diagnosis Details & Treatments</label>
+                                                                    <textarea type="text" required name="diag_details" rows="10" class="form-control"><?php echo $row->diag_details; ?></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-right">
+                                                                <button type="submit" name="update_medical_record" class="btn btn-success btn-roundedu">Update</button>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
