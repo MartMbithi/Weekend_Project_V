@@ -196,7 +196,7 @@ require_once('../app/partials/head.php');
                                 <tbody>
                                     <?php
                                     $ret = "SELECT * FROM  diagonisis d
-                                INNER JOIN users u ON u.user_id = d.diag_patient_id";
+                                    INNER JOIN users u ON u.user_id = d.diag_patient_id";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute(); //ok
                                     $res = $stmt->get_result();
@@ -225,7 +225,7 @@ require_once('../app/partials/head.php');
                                                             </svg>
                                                         </div>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="medica_record?view=<?php echo $row->diag_id; ?>">View Detail</a>
+                                                            <a class="dropdown-item" href="medical_record?view=<?php echo $row->diag_id; ?>">View Detail</a>
                                                             <a data-toggle="modal" class="dropdown-item" href="#update_<?php echo $row->diag_id; ?>">Edit</a>
                                                             <a data-toggle="modal" class="dropdown-item text-danger" href="#delete_<?php echo $row->diag_id; ?>">Delete</a>
                                                         </div>
@@ -239,7 +239,7 @@ require_once('../app/partials/head.php');
                                                 <div class="modal-content">
                                                     <div class="modal-header align-items-center">
                                                         <div class="text-bold">
-                                                            <h6 class="text-bold">Update #<?php echo $row->diag_ref; ?></h6>
+                                                            <h6 class="text-bold">Update #<?php echo $row->diad_ref; ?></h6>
                                                         </div>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -265,7 +265,7 @@ require_once('../app/partials/head.php');
                                                     </div>
                                                     <form method="POST">
                                                         <div class="modal-body text-center text-danger">
-                                                            <h4>Delete <?php echo $row->diag_ref; ?> Details? </h4>
+                                                            <h4>Delete <?php echo $row->diad_ref; ?> Details? </h4>
                                                             <br>
                                                             <!-- Hide This -->
                                                             <input type="hidden" name="diag_id" value="<?php echo $row->diag_id; ?>">
