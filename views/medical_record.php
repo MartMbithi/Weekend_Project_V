@@ -32,9 +32,9 @@ require_once('../app/partials/head.php');
         <?php require_once('../app/partials/header.php');
         require_once('../app/partials/sidebar.php');
         $view = $_GET['view'];
-        $ret = "SELECT * FROM  appointments a
-        INNER JOIN users u ON u.user_id = a.app_user_id
-        WHERE a.app_id  = '$view'";
+        $ret = "SELECT * FROM  diagonisis d
+        INNER JOIN users u ON u.user_id = d.diag_patient_id
+        WHERE d.diag_id = '$view'";
         $stmt = $mysqli->prepare($ret);
         $stmt->execute(); //ok
         $res = $stmt->get_result();
@@ -49,26 +49,11 @@ require_once('../app/partials/head.php');
                     <div class="page-titles">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item"><a href="appointments">Appointments</a></li>
-                            <li class="breadcrumb-item"><a href="javascript:void(0)"><?php echo $row->app_ref_code; ?></a></li>
+                            <li class="breadcrumb-item"><a href="medical_records">Medical Records</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)"><?php echo $row->diad_ref; ?></a></li>
                         </ol>
                     </div>
-                    <div class="d-md-flex d-block mb-3 align-items-center">
-                        <?php if ($row->app_status == 'Pending') { ?>
-                            <div class="dropdown d-inline-block ml-auto mr-2">
-                                <button type="button" class="btn btn-outline-danger btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="las la-times scale5 mr-3"></i>Pending
-                                </button>
-                            </div>
-                        <?php } elseif ($row->app_status == 'Approved') { ?>
-                            <div class="dropdown d-inline-block ml-auto mr-2">
-                                <button type="button" class="btn btn-outline-primary btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="las la-check-circle scale5 mr-3"></i>Approved
-                                </button>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <!-- End Modal -->
+
                     <div class="row">
                         <div class="col-6">
                             <div class="card border border-success">
@@ -152,7 +137,7 @@ require_once('../app/partials/head.php');
                             </div>
                         </div>
                         <?php
-                        $doc_id = $row->app_doc_id;
+                        $doc_id = $row->diag_doctor_id;
                         $ret = "SELECT * FROM users WHERE user_id = '$doc_id'";
                         $stmt = $mysqli->prepare($ret);
                         $stmt->execute(); //ok
@@ -249,20 +234,33 @@ require_once('../app/partials/head.php');
                         <div class="col-12">
                             <div class="card border border-success">
                                 <div class="card-header border-0 pb-0">
-                                    <h3 class="fs-20 mb-0 text-black">Appointment Details</h3>
+                                    <h3 class="fs-20 mb-0 text-black">Diagnosis, Prescriptions & Treatments Details</h3>
                                 </div>
                                 <hr>
                                 <div class="card-body">
+                                    <h5 class="text-center"><?php echo $row->diag_title; ?></h5>
                                     <p>
-                                        <?php echo $row->app_details; ?>
+                                        <?php echo $row->diag_details; ?>
                                     </p>
                                     <hr>
                                     <button type="button" class="btn btn-outline-primary btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="las la-tag scale5 mr-3"></i>Appointment REF #: <?php echo $row->app_ref_code; ?>
+                                        <i class="las la-tag scale5 mr-3"></i>REF #: <?php echo $row->diad_ref; ?>
                                     </button>
                                     <button type="button" class="btn btn-outline-primary btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="las la-calendar scale5 mr-3"></i>Appointment Date: <?php echo date('d M Y', strtotime($row->app_date)); ?>
+                                        <i class="las la-calendar scale5 mr-3"></i>Date: <?php echo date('d M Y', strtotime($row->diag_date_created)); ?>
                                     </button>
+                                    <button type="button" class="btn btn-outline-primary btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="las la-money-bill scale5 mr-3"></i>Cost: Ksh <?php echo number_format($row->diag_cost, 2); ?>
+                                    </button>
+                                    <?php if ($row->diag_payment_status == 'Pending') { ?>
+                                        <button type="button" class="btn btn-outline-danger btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="las la-funnel-dollar scale5 mr-3"></i>Payment Status: Pending
+                                        </button>
+                                    <?php } else { ?>
+                                        <button type="button" class="btn btn-outline-success btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="las la-funnel-dollar scale5 mr-3"></i>Payment Status: Paid
+                                        </button>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
