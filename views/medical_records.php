@@ -33,8 +33,31 @@ if (isset($_POST['add_medical_record'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
 /* Update Record */
-/* Delete Record */
+if (isset($_POST['update_medical_record'])) {
+    $diad_id = $_POST['diag_id'];
+    $diag_title  = $_POST['diag_title'];
+    $diag_details  = $_POST['diag_details'];
+    $diag_date_created = $_POST['diag_date_created'];
+
+    /* Add Details */
+    $sql = "UPDATE diagonisis SET diag_title =?, diag_details =?, diag_date_created =? WHERE diag_id = ?";
+    $prepare = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param(
+        'ssss',
+        $diag_title,
+        $diag_details,
+        $diag_date_created,
+        $diag_id
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $succeess  = "Medical Record Updated";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}/* Delete Record */
 require_once('../app/partials/head.php');
 ?>
 
