@@ -82,6 +82,39 @@ if (isset($_POST['delete_medical_record'])) {
         $err = "Failed!, Please Try Again";
     }
 }
+
+/* Add Payment */
+if (isset($_POST['pay_bill'])) {
+    $bill_ref_code = $paycode;
+    $bill_diag_id = $_POST['diag_id'];
+    $bill_amount  = $_POST['bill_amount'];
+    $bill_date_added  = date('d M Y');
+    $bill_added_by = $_SESSION['user_id'];
+
+    /* Prepare */
+    $sql = 'INSERT INTO bills (bill_ref_code, bill_diag_id, bill_amount, bill_date_added,bill_added_by) VALUES(?,?,?,?,?)';
+    $update_sql = "UPDATE diagonisis SET diag_payment_status ='Paid' WHERE diag_id = '$bill_diag_id'";
+
+    $prepare = $mysqli->prepare($sql);
+    $update_prepare = $mysqli->prepare($update_sql);
+
+    $bind = $prepare->bind_param(
+        'sssss',
+        $bill_ref_code,
+        $bill_diag_id,
+        $bill_amount,
+        $bill_date_added,
+        $bill_added_by
+    );
+    $prepare->execute();
+    $update_prepare->execute();
+
+    if ($prepare && $update_prepare) {
+        $success = "Bill Paid";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
