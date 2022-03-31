@@ -57,7 +57,22 @@ if (isset($_POST['update_medical_record'])) {
     } else {
         $err = "Failed!, Please Try Again";
     }
-}/* Delete Record */
+}
+
+/* Delete Record */
+if (isset($_POST['delete_medical_record'])) {
+    $diag_id = $_POST['diag_id'];
+
+    /* Prepare */
+    $sql = "DELETE FROM diagonisis WHERE diag_id = ?";
+    $prepare  = $mysqli->prepare($sql);
+    $bind = $prepare->bind_param('s', $diag_id);
+    if ($prepare) {
+        $succeess = "Medical Record Deleted";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
+}
 require_once('../app/partials/head.php');
 ?>
 
