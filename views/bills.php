@@ -29,12 +29,19 @@ if (isset($_POST['update'])) {
 /* Delete Payment Log */
 if (isset($_POST['delete'])) {
     $bill_id = $_POST['bill_id'];
+    $bill_diag_id = $_POST['bill_diag_id'];
 
     /* Delete */
     $sql = "DELETE FROM bills WHERE bill_id = '$bill_id'";
+    $update_sql = "UPDATE diagonisis SET diag_payment_status ='Pending' WHERE diag_id = '$bill_diag_id'";
+
     $prepare = $mysqli->prepare($sql);
+    $update_prepare = $mysqli->prepare($update_sql);
+
     $prepare->execute();
-    if ($prepare) {
+    $update_prepare->execute();
+
+    if ($prepare && $update_prepare) {
         $success = "Bill Deleted";
     } else {
         $err  = "Failed!, Please Try Again";
