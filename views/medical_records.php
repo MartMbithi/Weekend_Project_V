@@ -202,6 +202,7 @@ require_once('../app/partials/head.php');
                                     <tr>
                                         <th>Patient Details</th>
                                         <th>Medical Record Details</th>
+                                        <th>Payment Status</th>
                                         <th>Diagnosis & Prescriptions</th>
                                         <th>Action</th>
                                     </tr>
@@ -227,6 +228,17 @@ require_once('../app/partials/head.php');
                                                 Cost: Ksh <?php echo number_format($row->diag_cost, 2); ?><br>
                                                 Date: <?php echo date('d M Y', strtotime($row->diag_date_created)); ?>
                                             </td>
+                                            <td>
+                                                <?php if ($row->diag_payment_status == 'Pending') { ?>
+                                                    <button type="button" class="btn btn-outline-danger btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="las la-funnel-dollar scale5 mr-3"></i>Pending
+                                                    </button>
+                                                <?php } else { ?>
+                                                    <button type="button" class="btn btn-outline-success btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="las la-funnel-dollar scale5 mr-3"></i>Paid
+                                                    </button>
+                                                <?php } ?>
+                                            </td>
                                             <td><?php echo substr($row->diag_details, 0, 150); ?>...</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
@@ -240,6 +252,9 @@ require_once('../app/partials/head.php');
                                                         </div>
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <a class="dropdown-item" href="medical_record?view=<?php echo $row->diag_id; ?>">View Detail</a>
+                                                            <?php if ($row->diag_payment_status == 'Pending') { ?>
+                                                                <a data-toggle="modal" class="dropdown-item" href="#pay_<?php echo $row->diag_id; ?>">Add Payment</a>
+                                                            <?php } ?>
                                                             <a data-toggle="modal" class="dropdown-item" href="#update_<?php echo $row->diag_id; ?>">Edit</a>
                                                             <a data-toggle="modal" class="dropdown-item text-danger" href="#delete_<?php echo $row->diag_id; ?>">Delete</a>
                                                         </div>
@@ -282,6 +297,37 @@ require_once('../app/partials/head.php');
                                                             </div>
                                                             <div class="text-right">
                                                                 <button type="submit" name="update_medical_record" class="btn btn-success btn-roundedu">Update</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Modal -->
+
+                                        <!-- Add Payment Modal -->
+                                        <div class="modal fade fixed-right" id="pay_<?php echo $row->diag_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog  modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header align-items-center">
+                                                        <div class="text-bold">
+                                                            <h6 class="text-bold">Pay #<?php echo $row->diad_ref; ?></h6>
+                                                        </div>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="post" enctype="multipart/form-data" role="form">
+                                                            <div class="row">
+                                                                <div class="form-group col-md-12">
+                                                                    <label for="">Payment(Ksh)</label>
+                                                                    <input type="text" readonly required value="<?php echo $row->diag_cost; ?>" name="bill_amount" class="form-control">
+                                                                    <input type="hidden" required value="<?php echo $row->diag_id; ?>" name="bill_diag_id" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-right">
+                                                                <button type="submit" name="pay_bill" class="btn btn-success btn-roundedu">Pay</button>
                                                             </div>
                                                         </form>
                                                     </div>

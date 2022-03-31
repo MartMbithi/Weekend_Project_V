@@ -256,6 +256,10 @@ require_once('../app/partials/head.php');
                                         <button type="button" class="btn btn-outline-danger btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
                                             <i class="las la-funnel-dollar scale5 mr-3"></i>Payment Status: Pending
                                         </button>
+                                    <?php } else { ?>
+                                        <button type="button" class="btn btn-outline-success btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="las la-funnel-dollar scale5 mr-3"></i>Payment Status: Paid
+                                        </button>
                                     <?php } ?>
                                 </div>
                             </div>
