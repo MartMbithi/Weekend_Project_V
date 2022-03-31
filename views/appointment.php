@@ -70,7 +70,7 @@ require_once('../app/partials/head.php');
                     </div>
                     <!-- End Modal -->
                     <div class="row">
-                        <div class="col-xl-6 col-xxl-8 col-lg-8">
+                        <div class="col-6">
                             <div class="card border border-success">
                                 <div class="card-body">
                                     <div class="media d-sm-flex d-block text-center text-sm-left pb-4 mb-4 border-bottom">
@@ -159,7 +159,7 @@ require_once('../app/partials/head.php');
                         $res = $stmt->get_result();
                         while ($user = $res->fetch_object()) {
                         ?>
-                            <div class="col-xl-6 col-xxl-8 col-lg-8">
+                            <div class="col-6">
                                 <div class="card border border-success">
                                     <div class="card-body">
                                         <div class="media d-sm-flex d-block text-center text-sm-left pb-4 mb-4 border-bottom">
@@ -191,7 +191,7 @@ require_once('../app/partials/head.php');
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-6 mb-3">
+                                            <div class="col-6 mb-3">
                                                 <div class="media">
                                                     <span class="p-3 border border-primary-light rounded-circle mr-3">
                                                         <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="../../www.w3.org/2000/svg.html">
