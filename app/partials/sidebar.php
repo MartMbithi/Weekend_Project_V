@@ -23,7 +23,7 @@
             </li>
             <li><a href="medical_records" class="ai-icon" aria-expanded="false">
                     <i class="flaticon-381-notepad"></i>
-                    <span class="nav-text">Medical Records</span>
+                    <span class="nav-text">Diagnosis</span>
                 </a>
             </li>
             <li><a href="bills" class="ai-icon" aria-expanded="false">
