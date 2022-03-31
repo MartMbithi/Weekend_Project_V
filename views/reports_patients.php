@@ -38,12 +38,12 @@ require_once('../app/partials/head.php');
             <div class="container-fluid">
                 <div class="form-head d-flex mb-3 mb-md-4 align-items-start">
                     <div class="mr-auto d-none d-lg-block">
-                        <h3 class="text-black font-w600">Doctors</h3>
+                        <h3 class="text-black font-w600">Patients</h3>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-xl-12 ">
+                    <div class="col-xl-12">
                         <div class="table-responsive">
                             <table class="report_table shadow-hover mb-4 dataTablesCard fs-14">
                                 <thead>
@@ -55,13 +55,12 @@ require_once('../app/partials/head.php');
                                         <th>Email</th>
                                         <th>Address</th>
                                         <th>Date Registered</th>
-                                        <th>Access Level</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $ret = "SELECT * FROM users
-                                    WHERE user_access_level  = 'doctor' ||  user_access_level  = 'admin'  ";
+                                    WHERE user_access_level  = 'patient' ";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute(); //ok
                                     $res = $stmt->get_result();
@@ -75,13 +74,6 @@ require_once('../app/partials/head.php');
                                             <td><?php echo $user->user_email; ?></td>
                                             <td><?php echo $user->user_address; ?></td>
                                             <td><?php echo date('d M Y', strtotime($user->user_date_added)); ?></td>
-                                            <td>
-                                                <?php if ($user->user_access_level == 'admin') { ?>
-                                                    <span class="btn btn-primary light btn-rounded btn-sm text-nowrap">Administrator</span>
-                                                <?php } elseif ($user->user_access_level == 'doctor') { ?>
-                                                    <span class="btn btn-primary light btn-rounded btn-sm text-nowrap">Doctor</span>
-                                                <?php } ?>
-                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

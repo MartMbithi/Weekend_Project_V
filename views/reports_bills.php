@@ -38,49 +38,46 @@ require_once('../app/partials/head.php');
             <div class="container-fluid">
                 <div class="form-head d-flex mb-3 mb-md-4 align-items-start">
                     <div class="mr-auto d-none d-lg-block">
-                        <h3 class="text-black font-w600">Doctors</h3>
+                        <h3 class="text-black font-w600">Payment Reports</h3>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-xl-12 ">
-                        <div class="table-responsive">
+                    <div class="col-xl-12">
+                        <div class="table-responsive ">
                             <table class="report_table shadow-hover mb-4 dataTablesCard fs-14">
                                 <thead>
                                     <tr>
-                                        <th>Number</th>
-                                        <th>Full Names</th>
-                                        <th>Age</th>
-                                        <th>Contacts</th>
-                                        <th>Email</th>
-                                        <th>Address</th>
-                                        <th>Date Registered</th>
-                                        <th>Access Level</th>
+                                        <th>Payment Details</th>
+                                        <th>Diagnosis Details</th>
+                                        <th>Patient Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $ret = "SELECT * FROM users
-                                    WHERE user_access_level  = 'doctor' ||  user_access_level  = 'admin'  ";
+                                    $ret = "SELECT * FROM bills b 
+                                    INNER JOIN diagonisis d ON d.diag_id = b.bill_diag_id
+                                    INNER JOIN users u ON u.user_id = d.diag_patient_id";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute(); //ok
                                     $res = $stmt->get_result();
-                                    while ($user = $res->fetch_object()) {
+                                    while ($row = $res->fetch_object()) {
                                     ?>
                                         <tr>
-                                            <td><?php echo $user->user_number; ?></td>
-                                            <td><?php echo $user->user_name; ?></td>
-                                            <td><?php echo $user->user_age; ?> Years</td>
-                                            <td><?php echo $user->user_phone; ?></td>
-                                            <td><?php echo $user->user_email; ?></td>
-                                            <td><?php echo $user->user_address; ?></td>
-                                            <td><?php echo date('d M Y', strtotime($user->user_date_added)); ?></td>
                                             <td>
-                                                <?php if ($user->user_access_level == 'admin') { ?>
-                                                    <span class="btn btn-primary light btn-rounded btn-sm text-nowrap">Administrator</span>
-                                                <?php } elseif ($user->user_access_level == 'doctor') { ?>
-                                                    <span class="btn btn-primary light btn-rounded btn-sm text-nowrap">Doctor</span>
-                                                <?php } ?>
+                                                REF #: <?php echo $row->bill_ref_code; ?><br>
+                                                Amount: Ksh <?php echo number_format($row->bill_amount, 2); ?><br>
+                                                Date: <?php echo $row->bill_date_added; ?>
+                                            </td>
+                                            <td>
+                                                REF #: <?php echo $row->diad_ref; ?> <br>
+                                                Title: <?php echo $row->diag_title; ?><br>
+                                                Date: <?php echo date('d M Y', strtotime($row->diag_date_created)); ?>
+                                            </td>
+                                            <td>
+                                                Number: <?php echo $row->user_number; ?><br>
+                                                Name: <?php echo $row->user_name; ?><br>
+                                                Contacts: <?php echo $row->user_phone; ?>
                                             </td>
                                         </tr>
                                     <?php } ?>
