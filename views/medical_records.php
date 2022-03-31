@@ -12,18 +12,12 @@ if (isset($_POST['add_medical_record'])) {
     $diag_title  = $_POST['diag_title'];
     $diag_details  = $_POST['diag_details'];
     $diag_date_created = $_POST['diag_date_created'];
-
-    /* Automatically Bill This Medical Record */
-    $bill_ref_code = $paycode;
-    $bill_amount = $_POST['bill_amount'];
-    $bill_date_added = date('d M Y');
-    $bill_added_by = $_SESSION['user_id'];
-    $bill_status  = 'Pending';
+    $diag_cost = $_POST['diag_cost'];
 
     /* Add Details */
-    $sql = "INSERT INTO diagonisis (diad_ref, diag_patient_id, diag_doctor_id, diag_title, diag_details, diag_date_created)
+    $sql = "INSERT INTO diagonisis (diad_ref, diag_patient_id, diag_doctor_id, diag_title, diag_details, diag_date_created,
+    diag_cost)
     VALUES(?,?,?,?,?,?,?)";
-    $bill = "INSERT INTO bills(bill_ref_code, bill_amount, bill_date_added, bill_added_by, bill_status) VALUES(?,?,?,?,?)";
 
     $prepare = $mysqli->prepare($sql);
     $bill_prepare = $mysqli->prepare($bill);
@@ -36,20 +30,11 @@ if (isset($_POST['add_medical_record'])) {
         $diag_title,
         $diag_details,
         $diag_date_created,
+        $diag_cost
     );
-    $bill_bind = $bill_prepare->bind_param(
-        'sssss',
-        $bill_ref_code,
-        $bill_amount,
-        $bill_date_added,
-        $bill_added_by,
-        $bill_status
-    );
-
     $prepare->execute();
-    $bill_prepare->execute();
 
-    if ($prepare && $bill_prepare) {
+    if ($prepare) {
         $success  = "Medical Record Added";
     } else {
         $err = "Failed!, Please Try Again";
@@ -62,15 +47,17 @@ if (isset($_POST['update_medical_record'])) {
     $diag_title  = $_POST['diag_title'];
     $diag_details  = $_POST['diag_details'];
     $diag_date_created = $_POST['diag_date_created'];
+    $diag_cost = $_POST['diag_cost'];
 
     /* Add Details */
-    $sql = "UPDATE diagonisis SET diag_title =?, diag_details =?, diag_date_created =? WHERE diag_id = '$diad_id'";
+    $sql = "UPDATE diagonisis SET diag_title =?, diag_details =?, diag_date_created =?, diag_cost =? WHERE diag_id = '$diad_id'";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'ssss',
+        'sssss',
         $diag_title,
         $diag_details,
         $diag_date_created,
+        $diag_cost
     );
     $prepare->execute();
     if ($prepare) {
@@ -184,7 +171,11 @@ require_once('../app/partials/head.php');
                                             <label for="">Diagnosis Date</label>
                                             <input type="date" id="date-format" required name="diag_date_created" class="form-control">
                                         </div>
-                                        <div class="form-group col-md-12">
+                                        <div class="form-group col-md-4">
+                                            <label for="">Cost (Ksh)</label>
+                                            <input type="number" required name="diag_cost" class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-8">
                                             <label for="">Title</label>
                                             <input type="text" required name="diag_title" class="form-control">
                                         </div>
@@ -233,6 +224,7 @@ require_once('../app/partials/head.php');
                                             <td>
                                                 REF #: <?php echo $row->diad_ref; ?> <br>
                                                 Title: <?php echo $row->diag_title; ?><br>
+                                                Cost: Ksh <?php echo number_format($row->diag_cost, 2); ?><br>
                                                 Date: <?php echo date('d M Y', strtotime($row->diag_date_created)); ?>
                                             </td>
                                             <td><?php echo substr($row->diag_details, 0, 150); ?>...</td>
@@ -270,14 +262,18 @@ require_once('../app/partials/head.php');
                                                     <div class="modal-body">
                                                         <form method="post" enctype="multipart/form-data" role="form">
                                                             <div class="row">
-                                                                <div class="form-group col-md-8">
+                                                                <div class="form-group col-md-12">
                                                                     <label for="">Title</label>
                                                                     <input type="text" required value="<?php echo $row->diag_title; ?>" name="diag_title" class="form-control">
                                                                     <input type="hidden" required value="<?php echo $row->diag_id; ?>" name="diag_id" class="form-control">
                                                                 </div>
-                                                                <div class="form-group col-md-4">
+                                                                <div class="form-group col-md-6">
                                                                     <label for="">Diagnosis Date</label>
                                                                     <input type="date" id="date-format" value="<?php echo $row->diag_date_created; ?>" required name="diag_date_created" class="form-control">
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="">Cost (Ksh)</label>
+                                                                    <input type="number" value="<?php echo $row->diag_cost; ?>" required name="diag_cost" class="form-control">
                                                                 </div>
                                                                 <div class="form-group col-md-12">
                                                                     <label for="">Diagnosis Details & Treatments</label>
