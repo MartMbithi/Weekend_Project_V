@@ -13,21 +13,43 @@ if (isset($_POST['add_medical_record'])) {
     $diag_details  = $_POST['diag_details'];
     $diag_date_created = $_POST['diag_date_created'];
 
+    /* Automatically Bill This Medical Record */
+    $bill_ref_code = $paycode;
+    $bill_amount = $_POST['bill_amount'];
+    $bill_date_added = date('d M Y');
+    $bill_added_by = $_SESSION['user_id'];
+    $bill_status  = 'Pending';
+
     /* Add Details */
     $sql = "INSERT INTO diagonisis (diad_ref, diag_patient_id, diag_doctor_id, diag_title, diag_details, diag_date_created)
-    VALUES(?,?,?,?,?,?)";
+    VALUES(?,?,?,?,?,?,?)";
+    $bill = "INSERT INTO bills(bill_ref_code, bill_amount, bill_date_added, bill_added_by, bill_status) VALUES(?,?,?,?,?)";
+
     $prepare = $mysqli->prepare($sql);
+    $bill_prepare = $mysqli->prepare($bill);
+
     $bind = $prepare->bind_param(
-        'ssssss',
+        'sssssss',
         $diad_ref,
         $diag_patient_id,
         $diag_doctor_id,
         $diag_title,
         $diag_details,
-        $diag_date_created
+        $diag_date_created,
     );
+    $bill_bind = $bill_prepare->bind_param(
+        'sssss',
+        $bill_ref_code,
+        $bill_amount,
+        $bill_date_added,
+        $bill_added_by,
+        $bill_status
+    );
+
     $prepare->execute();
-    if ($prepare) {
+    $bill_prepare->execute();
+
+    if ($prepare && $bill_prepare) {
         $success  = "Medical Record Added";
     } else {
         $err = "Failed!, Please Try Again";
@@ -45,10 +67,10 @@ if (isset($_POST['update_medical_record'])) {
     $sql = "UPDATE diagonisis SET diag_title =?, diag_details =?, diag_date_created =? WHERE diag_id = '$diad_id'";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'sss',
+        'ssss',
         $diag_title,
         $diag_details,
-        $diag_date_created
+        $diag_date_created,
     );
     $prepare->execute();
     if ($prepare) {
