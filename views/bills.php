@@ -4,28 +4,6 @@ require_once '../app/settings/config.php';
 require_once('../app/settings/checklogin.php');
 check_login();
 require_once('../app/settings/codeGen.php');
-/* Update Payment */
-if (isset($_POST['update'])) {
-    $bill_id = $_POST['bill_id'];
-    $bill_amount = $_POST['bill_amount'];
-    $bill_date_added = $_POST['bill_date_added'];
-
-    /* Persist */
-    $sql = "UPDATE bills SET bill_amount =?, bill_date_added =? WHERE bill_id = ?";
-    $prepare = $mysqli->prepare($sql);
-    $bind = $prepare->bind_param(
-        'sss',
-        $bill_amount,
-        $bill_date_added,
-        $bill_id
-    );
-    $prepare->execute();
-    if ($prepare) {
-        $success = "Bill Updated";
-    } else {
-        $err = "Failed!, Please Try Again";
-    }
-}
 
 /* Delete Payment Log */
 if (isset($_POST['delete'])) {
@@ -135,35 +113,13 @@ require_once('../app/partials/head.php');
                                                             </svg>
                                                         </div>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                            <a data-toggle="modal" class="dropdown-item" href="#update_<?php echo $row->bill_id; ?>">Edit</a>
                                                             <a data-toggle="modal" class="dropdown-item text-danger" href="#delete_<?php echo $row->bill_id; ?>">Delete</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <!-- Update Modal -->
-                                        <div class="modal fade fixed-right" id="update_<?php echo $row->bill_id; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                            <div class="modal-dialog  modal-xl" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header align-items-center">
-                                                        <div class="text-bold">
-                                                            <h6 class="text-bold">Update #<?php echo $row->bill_ref_code; ?></h6>
-                                                        </div>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Modal -->
-
-
-
+                                        
                                         <!-- Delete Modal -->
                                         <div class="modal fade" id="delete_<?php echo $row->bill_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
