@@ -19,6 +19,35 @@ if (isset($_POST['add_survey'])) {
     $survey_user_fam_members = $_POST['survey_user_fam_members'];
     $survey_user_tests = $_POST['survey_user_tests'];
     $survey_user_vaccination = $_POST['survey_user_vaccination'];
+
+    /* Persist Survey */
+    $sql = "INSERT INTO surveys(survey_ref, survey_user_id, survey_user_dob, survey_user_gender, survey_syptoms, survey_other_difficulties
+    survey_user_ailments, survey_travel_history, survey_user_travel, survey_user_people_contacted, survey_user_fam_members, survey_user_tests,
+    survey_user_vaccination)
+    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $prepare = $mysqli->prepare($sql);
+    $bind  = $prepare->bind_param(
+        'sssssssssssss',
+        $survey_ref,
+        $survey_user_id,
+        $survey_user_dob,
+        $survey_user_gender,
+        $survey_syptoms,
+        $survey_other_difficulties,
+        $survey_user_ailments,
+        $survey_travel_history,
+        $survey_user_travel,
+        $survey_user_people_contacted,
+        $survey_user_fam_members,
+        $survey_user_tests,
+        $survey_user_vaccination
+    );
+    $prepare->execute();
+    if ($prepare) {
+        $success = "Response Submitted";
+    } else {
+        $err = "Failed!, Please Try Again";
+    }
 }
 require_once('../app/partials/head.php');
 ?>
