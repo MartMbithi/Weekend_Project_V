@@ -52,7 +52,7 @@ $user_id = $_SESSION['user_id'];
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-3 col-xxl-6 col-sm-6">
+                    <div class="col-4">
                         <a href="my_appointments">
                             <div class="card gradient-bx text-white bg-info rounded">
                                 <div class="card-body">
@@ -86,9 +86,9 @@ $user_id = $_SESSION['user_id'];
                             </div>
                         </a>
                     </div>
-                    <div class="col-xl-3 col-xxl-6 col-sm-6">
+                    <div class="col-4">
                         <a href="my_bills">
-                            <div class="card gradient-bx text-white bg-success rounded">
+                            <div class="card gradient-bx text-white bg-danger rounded">
                                 <div class="card-body">
                                     <div class="media align-items-center">
                                         <div class="media-body">
@@ -107,9 +107,9 @@ $user_id = $_SESSION['user_id'];
                             </div>
                         </a>
                     </div>
-                    <div class="col-xl-3 col-xxl-6 col-sm-6">
+                    <div class="col-4">
                         <a href="my_bills">
-                            <div class="card gradient-bx text-white bg-secondary rounded">
+                            <div class="card gradient-bx text-white bg-success rounded">
                                 <div class="card-body">
                                     <div class="media align-items-center">
                                         <div class="media-body">
@@ -141,14 +141,13 @@ $user_id = $_SESSION['user_id'];
                                         <tr>
                                             <th>Appointment Details</th>
                                             <th>Doctor Details</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $ret = "SELECT * FROM  appointments a
                                         INNER JOIN users u ON u.user_id = a.app_doc_id
-                                        WHERE u.app_user_id = '$user_id";
+                                        WHERE a.app_user_id = '$user_id'";
                                         $stmt = $mysqli->prepare($ret);
                                         $stmt->execute(); //ok
                                         $res = $stmt->get_result();
