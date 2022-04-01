@@ -20,7 +20,6 @@ if (isset($_POST['add_medical_record'])) {
     VALUES(?,?,?,?,?,?,?)";
 
     $prepare = $mysqli->prepare($sql);
-    $bill_prepare = $mysqli->prepare($bill);
 
     $bind = $prepare->bind_param(
         'sssssss',

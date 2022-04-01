@@ -54,9 +54,8 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
     $stmt->close();
 
     /* 2. Pending Hospital Bill Payment */
-    $query = "SELECT SUM(bill_amount)  FROM bills b
-    INNER JOIN diagonisis d ON d.diag_id = b.bill_diag_id
-    WHERE d.diag_patient_id = '$user_id' AND b.bill_status = 'Pending' ";
+    $query = "SELECT SUM(diag_cost)  FROM diagonisis
+    WHERE diag_patient_id = '$user_id' AND diag_payment_status = 'Pending' ";
     $stmt = $mysqli->prepare($query);
     $stmt->execute();
     $stmt->bind_result($pending_bills);
@@ -67,7 +66,7 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
     /* 3. Overall Expenditure */
     $query = "SELECT SUM(bill_amount)  FROM bills b
     INNER JOIN diagonisis d ON d.diag_id = b.bill_diag_id
-    WHERE d.diag_patient_id = '$user_id' AND b.bill_status = 'Paid' ";
+    WHERE d.diag_patient_id = '$user_id' AND d.diag_payment_status = 'Paid' ";
     $stmt = $mysqli->prepare($query);
     $stmt->execute();
     $stmt->bind_result($paid_bills);

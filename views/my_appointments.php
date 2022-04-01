@@ -8,7 +8,7 @@ require_once('../app/settings/codeGen.php');
 if (isset($_POST['add_appointment'])) {
     $app_ref_code = $a . $b;
     $app_doc_id = $_POST['app_doc_id'];
-    $app_user_id = $_POST['app_user_id'];
+    $app_user_id = $_SESSION['user_id'];
     $app_status = 'Pending';
     $app_date = $_POST['app_date'];
     $app_details = $_POST['app_details'];
@@ -70,21 +70,6 @@ if (isset($_POST['delete_appointment'])) {
     }
 }
 
-/* Approve */
-if (isset($_POST['approve'])) {
-    $app_id = $_POST['app_id'];
-
-    /* persist */
-    $sql = "UPDATE appointments SET app_status = 'Approved' WHERE app_id = ?";
-    $prepare = $mysqli->prepare($sql);
-    $bind = $prepare->bind_param('s', $app_id);
-    $prepare->execute();
-    if ($prepare) {
-        $success = "Appointment Approved";
-    } else {
-        $err = "Failed!, Please Try Again Later";
-    }
-}
 require_once('../app/partials/head.php');
 ?>
 
@@ -140,7 +125,7 @@ require_once('../app/partials/head.php');
                             <div class="modal-body">
                                 <form method="post" enctype="multipart/form-data" role="form">
                                     <div class="row">
-                                        <div class="form-group col-md-12">
+                                        <div class="form-group col-md-8">
                                             <label for="">Doctor Full Names</label>
                                             <select type="text" required name="app_doc_id" class="form-control">
                                                 <?php
@@ -155,21 +140,7 @@ require_once('../app/partials/head.php');
                                                 <?php } ?>
                                             </select>
                                         </div>
-                                        <div class="form-group col-md-8">
-                                            <label for="">Patient Full Names</label>
-                                            <select type="text" required name="app_user_id" class="form-control">
-                                                <?php
-                                                $ret = "SELECT * FROM users
-                                                WHERE user_access_level  = 'patient'";
-                                                $stmt = $mysqli->prepare($ret);
-                                                $stmt->execute(); //ok
-                                                $res = $stmt->get_result();
-                                                while ($patient = $res->fetch_object()) {
-                                                ?>
-                                                    <option value="<?php echo $patient->user_id; ?>"><?php echo $patient->user_number . ' ' . $patient->user_name; ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
+
                                         <div class="form-group col-md-4">
                                             <label for="">Appointment Date</label>
                                             <input type="date" id="date-format" required name="app_date" class="form-control">
@@ -195,14 +166,16 @@ require_once('../app/partials/head.php');
                             <thead>
                                 <tr>
                                     <th>Appointment Details</th>
-                                    <th>Patient Details</th>
+                                    <th>Doctor Details</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+                                $user_id = $_SESSION['user_id'];
                                 $ret = "SELECT * FROM  appointments a
-                                INNER JOIN users u ON u.user_id = a.app_user_id";
+                                INNER JOIN users u ON u.user_id = a.app_doc_id
+                                WHERE a.app_user_id = '$user_id'";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute(); //ok
                                 $res = $stmt->get_result();
@@ -235,9 +208,8 @@ require_once('../app/partials/head.php');
                                                         </svg>
                                                     </div>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="appointment?view=<?php echo $row->app_id; ?>">View Detail</a>
+                                                        <a class="dropdown-item" href="my_appointment?view=<?php echo $row->app_id; ?>">View Detail</a>
                                                         <a data-toggle="modal" class="dropdown-item" href="#update_<?php echo $row->app_id; ?>">Edit</a>
-                                                        <a data-toggle="modal" class="dropdown-item" href="#approve_<?php echo $row->app_id; ?>">Approve</a>
                                                         <a data-toggle="modal" class="dropdown-item text-danger" href="#delete_<?php echo $row->app_id; ?>">Delete</a>
                                                     </div>
                                                 </div>
@@ -299,31 +271,6 @@ require_once('../app/partials/head.php');
                                                         <input type="hidden" name="app_id" value="<?php echo $row->app_id; ?>">
                                                         <button type="button" class="text-center btn btn-success btn-roundedu" data-dismiss="modal">No</button>
                                                         <input type="submit" name="delete_appointment" value="Delete" class="text-center btn btn-danger btn-roundedu">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Modal -->
-
-                                    <!-- Approve Modal -->
-                                    <div class="modal fade" id="approve_<?php echo $row->app_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">CONFIRM APPROVAL</h5>
-                                                    <button type="button" class="close" data-dismiss="modal">
-                                                        <span>&times;</span>
-                                                    </button>
-                                                </div>
-                                                <form method="POST">
-                                                    <div class="modal-body text-center text-danger">
-                                                        <h4>Approve <?php echo $row->app_ref_code; ?>? </h4>
-                                                        <br>
-                                                        <!-- Hide This -->
-                                                        <input type="hidden" name="app_id" value="<?php echo $row->app_id; ?>">
-                                                        <button type="button" class="text-center btn btn-success btn-roundedu" data-dismiss="modal">No</button>
-                                                        <input type="submit" name="approve" value="Approve" class="text-center btn btn-danger btn-roundedu">
                                                     </div>
                                                 </form>
                                             </div>

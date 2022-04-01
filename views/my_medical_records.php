@@ -4,28 +4,6 @@ require_once '../app/settings/config.php';
 require_once('../app/settings/checklogin.php');
 check_login();
 require_once('../app/settings/codeGen.php');
-
-/* Delete Payment Log */
-if (isset($_POST['delete'])) {
-    $bill_id = $_POST['bill_id'];
-    $bill_diag_id = $_POST['diag_id'];
-
-    /* Delete */
-    $sql = "DELETE FROM bills WHERE bill_id = '$bill_id'";
-    $update_sql = "UPDATE diagonisis SET diag_payment_status ='Pending' WHERE diag_id = '$bill_diag_id'";
-
-    $prepare = $mysqli->prepare($sql);
-    $update_prepare = $mysqli->prepare($update_sql);
-
-    $prepare->execute();
-    $update_prepare->execute();
-
-    if ($prepare && $update_prepare) {
-        $success = "Bill Deleted";
-    } else {
-        $err  = "Failed!, Please Try Again";
-    }
-}
 require_once('../app/partials/head.php');
 ?>
 
@@ -60,7 +38,7 @@ require_once('../app/partials/head.php');
             <div class="container-fluid">
                 <div class="form-head d-flex mb-3 mb-md-4 align-items-start">
                     <div class="mr-auto d-none d-lg-block">
-                        <h3 class="text-black font-w600">Payment Records</h3>
+                        <h3 class="text-black font-w600">Medical Records</h3>
                     </div>
                 </div>
                 <hr>
@@ -70,17 +48,18 @@ require_once('../app/partials/head.php');
                             <table class="table shadow-hover mb-4 dataTablesCard fs-14">
                                 <thead>
                                     <tr>
-                                        <th>Payment Details</th>
-                                        <th>Diagnosis Details</th>
-                                        <th>Patient Details</th>
+                                        <th>Medical Record Details</th>
+                                        <th>Payment Status</th>
+                                        <th>Diagnosis & Prescriptions</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $ret = "SELECT * FROM bills b 
-                                    INNER JOIN diagonisis d ON d.diag_id = b.bill_diag_id
-                                    INNER JOIN users u ON u.user_id = d.diag_patient_id";
+                                    $user_id = $_SESSION['user_id'];
+                                    $ret = "SELECT * FROM  diagonisis d
+                                    INNER JOIN users u ON u.user_id = d.diag_patient_id
+                                    WHERE u.user_id = '$user_id'";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute(); //ok
                                     $res = $stmt->get_result();
@@ -88,20 +67,23 @@ require_once('../app/partials/head.php');
                                     ?>
                                         <tr>
                                             <td>
-                                                REF #: <?php echo $row->bill_ref_code; ?><br>
-                                                Amount: Ksh <?php echo number_format($row->bill_amount, 2); ?><br>
-                                                Date: <?php echo $row->bill_date_added; ?>
-                                            </td>
-                                            <td>
                                                 REF #: <?php echo $row->diad_ref; ?> <br>
                                                 Title: <?php echo $row->diag_title; ?><br>
+                                                Cost: Ksh <?php echo number_format($row->diag_cost, 2); ?><br>
                                                 Date: <?php echo date('d M Y', strtotime($row->diag_date_created)); ?>
                                             </td>
                                             <td>
-                                                Number: <?php echo $row->user_number; ?><br>
-                                                Name: <?php echo $row->user_name; ?><br>
-                                                Contacts: <?php echo $row->user_phone; ?>
+                                                <?php if ($row->diag_payment_status == 'Pending') { ?>
+                                                    <button type="button" class="btn btn-outline-danger btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="las la-funnel-dollar scale5 mr-3"></i>Pending
+                                                    </button>
+                                                <?php } else { ?>
+                                                    <button type="button" class="btn btn-outline-success btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
+                                                        <i class="las la-hand-holding-usd scale5 mr-3"></i> Paid
+                                                    </button>
+                                                <?php } ?>
                                             </td>
+                                            <td><?php echo substr($row->diag_details, 0, 150); ?>...</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="dropdown text-center">
@@ -113,38 +95,13 @@ require_once('../app/partials/head.php');
                                                             </svg>
                                                         </div>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                            <a data-toggle="modal" class="dropdown-item text-danger" href="#delete_<?php echo $row->bill_id; ?>">Delete</a>
+                                                            <a class="dropdown-item" href="my_medical_record?view=<?php echo $row->diag_id; ?>">View Detail</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
-                                        
-                                        <!-- Delete Modal -->
-                                        <div class="modal fade" id="delete_<?php echo $row->bill_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">CONFIRM DELETE</h5>
-                                                        <button type="button" class="close" data-dismiss="modal">
-                                                            <span>&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form method="POST">
-                                                        <div class="modal-body text-center text-danger">
-                                                            <h4>Delete <?php echo $row->bill_ref_code; ?> Details? </h4>
-                                                            <br>
-                                                            <!-- Hide This -->
-                                                            <input type="hidden" name="diag_id" value="<?php echo $row->diag_id; ?>">
-                                                            <input type="hidden" name="bill_id" value="<?php echo $row->bill_id; ?>">
-                                                            <button type="button" class="text-center btn btn-success btn-roundedu" data-dismiss="modal">No</button>
-                                                            <input type="submit" name="delete" value="Delete" class="text-center btn btn-danger btn-roundedu">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End Modal -->
+                                     
                                     <?php } ?>
                                 </tbody>
                             </table>
