@@ -1,0 +1,5 @@
+{
+    "require": {
+        "ayeo/gs1_barcode": "1.0.3"
+    }
+}
