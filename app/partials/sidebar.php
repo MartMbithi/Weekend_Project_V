@@ -86,6 +86,11 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
                         <span class="nav-text">Bills</span>
                     </a>
                 </li>
+                <li><a href="my_survey" class="ai-icon" aria-expanded="false">
+                        <i class="flaticon-381-file"></i>
+                        <span class="nav-text">Surveys</span>
+                    </a>
+                </li>
                 <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                         <i class="flaticon-381-layer"></i>
                         <span class="nav-text">Reports</span>
