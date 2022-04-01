@@ -21,10 +21,9 @@ if (isset($_POST['add_survey'])) {
     $survey_user_vaccination = $_POST['survey_user_vaccination'];
 
     /* Persist Survey */
-    $sql = "INSERT INTO surveys(survey_ref, survey_user_id, survey_user_dob, survey_user_gender, survey_syptoms, survey_other_difficulties
+    $sql = "INSERT INTO surveys(survey_ref, survey_user_id, survey_user_dob, survey_user_gender, survey_syptoms, survey_other_difficulties,
     survey_user_ailments, survey_travel_history, survey_user_travel, survey_user_people_contacted, survey_user_fam_members, survey_user_tests,
-    survey_user_vaccination)
-    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    survey_user_vaccination) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $prepare = $mysqli->prepare($sql);
     $bind  = $prepare->bind_param(
         'sssssssssssss',
@@ -126,7 +125,7 @@ require_once('../app/partials/head.php');
                                                         <span class="text-danger">*</span>
                                                     </label>
                                                     <div class="col-lg-6">
-                                                        <select class="multi-select" name="survey_user_gender" multiple="multiple">
+                                                        <select class="multi-select" name="survey_syptoms" multiple="multiple">
                                                             <option>Colds</option>
                                                             <option>Fever</option>
                                                             <option>Headache</option>
