@@ -47,6 +47,7 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
                         <li><a href="reports_patients">Patients</a></li>
                         <li><a href="reports_apponitments">Appointments</a></li>
                         <li><a href="reports_bills">Bills</a></li>
+                        <li><a href="reports_surveys">Surveys</a></li>
                     </ul>
                 </li>
                 <li><a href="logout" class="ai-icon" aria-expanded="false">
