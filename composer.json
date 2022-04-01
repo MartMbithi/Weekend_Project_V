@@ -1,5 +1,6 @@
 {
     "require": {
-        "ayeo/gs1_barcode": "1.0.3"
+        "ayeo/gs1_barcode": "1.0.3",
+        "dompdf/dompdf": "^1.2"
     }
 }
