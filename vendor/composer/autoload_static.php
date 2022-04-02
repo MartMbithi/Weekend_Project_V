@@ -12,6 +12,10 @@ class ComposerStaticInitb7533ab351e6c342c648fd186b20d680
             'Svg\\' => 4,
             'Sabberworm\\CSS\\' => 15,
         ),
+        'P' => 
+        array (
+            'Picqer\\Barcode\\' => 15,
+        ),
         'F' => 
         array (
             'FontLib\\' => 8,
@@ -34,6 +38,10 @@ class ComposerStaticInitb7533ab351e6c342c648fd186b20d680
         'Sabberworm\\CSS\\' => 
         array (
             0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/src',
+        ),
+        'Picqer\\Barcode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/picqer/php-barcode-generator/src',
         ),
         'FontLib\\' => 
         array (

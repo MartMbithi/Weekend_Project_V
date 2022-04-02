@@ -9,11 +9,8 @@ require_once('../vendor/autoload.php');
 /* Load Dom PDF */
 
 use Dompdf\Dompdf;
-
 /* Load Barcode */
-use Ayeo\Barcode;
 
-$builder = new Barcode\Builder();
 $dompdf = new Dompdf();
 
 /* Convert Logo To Base64 Image */
@@ -28,7 +25,7 @@ $watermark_type = pathinfo($watermark_path, PATHINFO_EXTENSION);
 $watermark_data = file_get_contents($watermark_path);
 $app_watermark = 'data:image/' . $watermark_type . ';base64,' . base64_encode($watermark_data);
 
-
+/* Convert Barcode Generator  */
 
 /* Appointment Code */
 $id = $_GET['id'];

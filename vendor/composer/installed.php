@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '658d21bc6d789df930be771a752eb3326b207dd9',
+        'reference' => 'aaaf89554a8799c34bbb65e752dee449e43c283a',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '658d21bc6d789df930be771a752eb3326b207dd9',
+            'reference' => 'aaaf89554a8799c34bbb65e752dee449e43c283a',
             'dev_requirement' => false,
         ),
         'ayeo/gs1_barcode' => array(
@@ -53,6 +53,15 @@
             'install_path' => __DIR__ . '/../phenx/php-svg-lib',
             'aliases' => array(),
             'reference' => '4498b5df7b08e8469f0f8279651ea5de9626ed02',
+            'dev_requirement' => false,
+        ),
+        'picqer/php-barcode-generator' => array(
+            'pretty_version' => 'v2.2.1',
+            'version' => '2.2.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../picqer/php-barcode-generator',
+            'aliases' => array(),
+            'reference' => '49022793ff09569c57a2621ba58a191db5a421c4',
             'dev_requirement' => false,
         ),
         'sabberworm/php-css-parser' => array(
