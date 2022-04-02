@@ -1,5 +1,5 @@
 <?php
-$html .='<div style="margin:1px; page-break-after: always;">
+$html = '<div style="margin:1px; page-break-after: always;">
     <style type="text/css">
                 @media print {
                     .pagebreak { page-break-before: always; } /* page-break-after works, as well */
@@ -61,9 +61,12 @@ $html .='<div style="margin:1px; page-break-after: always;">
                     font-weight: bold;
                 }
 
-                #amount {
-                    text-align: right;
-                    font-weight: bold;
+                .watermark {
+                    opacity: 0.2;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 100%;
                 }
 
                 .pagenum:before {
@@ -81,19 +84,20 @@ $html .='<div style="margin:1px; page-break-after: always;">
             <div class="pagebreak">
             <div class="footer">
                 <hr>
-                <b>The Official Transcript Bears Ukamba Bible College Seal, Signature and Stamp of the  Academics Dean</b>
+                <b>iAfya - The Ultimate Healthcare Information Management System</b>
             </div>
-            <h3 class="list_header" align="center">
-                <img src="' . $app_logo . '" align="center">
-                <br>
-                
-                <h3>
-                    
-                </h3>
+            <div class="body">
+                <h3 class="list_header" align="center">
+                    <img src="' . $app_logo . '" align="center">
+                    <h3>
+                        iAfya  -  <br>
 
-                <hr style="width:100%" , color=black>
-                <hr class="red">
-                <h3>  APPOINTMENT REF# : '.$id.'  </h3>
-            </h3>
+                    </h3>
+
+                    <hr style="width:100%" , color=green>
+                    <h3>  APPOINTMENT REF# : ' . $id . '  </h3>
+                </h3>
+                <img class="watermark" src="' . $app_watermark . '">
+            </div>
         </div>
     </div>';

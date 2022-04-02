@@ -15,6 +15,13 @@ $path = '../assets/images/logo.png';
 $type = pathinfo($path, PATHINFO_EXTENSION);
 $data = file_get_contents($path);
 $app_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+/* Convert Watermark TO Base64 Image */
+$watermark_path = '../assets/images/background.jpg';
+$watermark_type = pathinfo($watermark_path, PATHINFO_EXTENSION);
+$watermark_data = file_get_contents($watermark_path);
+$app_watermark = 'data:image/' . $watermark_type . ';base64,' . base64_encode($watermark_data);
+
 $id = $_GET['id'];
 /* Load Partials from helpers */
 require_once('../app/helpers/appointment_dump.php');
