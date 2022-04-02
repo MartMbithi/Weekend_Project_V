@@ -116,7 +116,7 @@ $html = '<div style="margin:1px; page-break-after: always;">
                         </b>
                         <br>
                             Ref: ' . $id . '<br>
-                            Date: ' . $row->app_date . ' <br>
+                            Date: ' . date('d M Y', strtotime($row->app_date)) . ' <br>
                             Status:  ' . $row->app_status . ' <br>
                         <br>
                     </p>             
@@ -148,7 +148,7 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 <br><br><br><br><br><br>
                 <h3 class="list_header" align="center">
                     <hr style="width:100%" >
-                    APPOINTMENT DESCRIPTION <br>
+                    DESCRIPTION <br>
                     <hr style="width:100%" >
                 </h3>
                 <p class="list_header">
