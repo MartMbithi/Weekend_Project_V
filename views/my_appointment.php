@@ -59,12 +59,18 @@ require_once('../app/partials/head.php');
                                 <button type="button" class="btn btn-outline-danger btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
                                     <i class="las la-times scale5 mr-3"></i>Pending
                                 </button>
+                                <a href="download_appointment?id=<?php echo $row->app_ref_code; ?>" class="btn btn-outline-primary btn-rounded  font-w600">
+                                    <i class="scale5 mr-3 las la-file-download"></i> Download
+                                </a>
                             </div>
                         <?php } elseif ($row->app_status == 'Approved') { ?>
                             <div class="dropdown d-inline-block ml-auto mr-2">
                                 <button type="button" class="btn btn-outline-primary btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
                                     <i class="las la-check-circle scale5 mr-3"></i>Approved
                                 </button>
+                                <a href="download_appointment?id=<?php echo $row->app_ref_code; ?>" class="btn btn-outline-primary btn-rounded  font-w600">
+                                    <i class="scale5 mr-3 las la-file-download"></i> Download
+                                </a>
                             </div>
                         <?php } ?>
                     </div>

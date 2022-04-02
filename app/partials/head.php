@@ -28,4 +28,6 @@
     <!-- Pick date -->
     <link rel="stylesheet" href="../assets/vendor/pickadate/themes/default.css">
     <link rel="stylesheet" href="../assets/vendor/pickadate/themes/default.date.css">
+    <!-- Select 2 -->
+    <link href="../assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
 </head>

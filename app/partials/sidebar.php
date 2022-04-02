@@ -38,6 +38,11 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
                         <span class="nav-text">Bills</span>
                     </a>
                 </li>
+                <li><a href="settings" class="ai-icon" aria-expanded="false">
+                        <i class="flaticon-381-settings"></i>
+                        <span class="nav-text">Settings</span>
+                    </a>
+                </li>
                 <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                         <i class="flaticon-381-layer"></i>
                         <span class="nav-text">Reports</span>
@@ -47,6 +52,7 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
                         <li><a href="reports_patients">Patients</a></li>
                         <li><a href="reports_apponitments">Appointments</a></li>
                         <li><a href="reports_bills">Bills</a></li>
+                        <li><a href="reports_surveys">Surveys</a></li>
                     </ul>
                 </li>
                 <li><a href="logout" class="ai-icon" aria-expanded="false">
@@ -84,6 +90,11 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
                 <li><a href="my_bills" class="ai-icon" aria-expanded="false">
                         <i class="flaticon-381-diploma"></i>
                         <span class="nav-text">Bills</span>
+                    </a>
+                </li>
+                <li><a href="my_survey" class="ai-icon" aria-expanded="false">
+                        <i class="flaticon-381-file"></i>
+                        <span class="nav-text">Surveys</span>
                     </a>
                 </li>
                 <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
