@@ -11,14 +11,14 @@ use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 
 /* Convert Logo To Base64 Image */
-$path = '../assets/images/no-profile.png';
+$path = '../assets/images/logo.png';
 $type = pathinfo($path, PATHINFO_EXTENSION);
 $data = file_get_contents($path);
-$ubc_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
+$app_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
 $id = $_GET['id'];
 
 
-$html = "Hello World";
+$html = '<img src="' . $app_logo . '" align="center">';
 
 $dompdf->load_html($html);
 $dompdf->set_paper('A4');
