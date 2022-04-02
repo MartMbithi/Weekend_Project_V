@@ -95,7 +95,7 @@ $html = '<div style="margin:1px; page-break-after: always;">
                         ' . $row->sys_email  . ' <br>
                         ' . $row->sys_postal_addr . ' <br>
                     <hr style="width:100%" >
-                      APPOINTMENT REF# : ' . $id . '  
+                    APPOINTMENT REF# : ' . $id . '  
                 </h3>
                 <img class="watermark" src="' . $app_watermark . '">
             </div>
