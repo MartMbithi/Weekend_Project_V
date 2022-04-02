@@ -31,7 +31,7 @@ $stmt = $mysqli->prepare($ret);
 $stmt->execute(); //ok
 $res = $stmt->get_result();
 while ($row = $res->fetch_object()) {
-
+    $html = '<link rel="stylesheet" href="/css/bootstrap.min.css" />';
     /* Load Partials from helpers */
     require_once('../app/helpers/appointment_dump.php');
 }
