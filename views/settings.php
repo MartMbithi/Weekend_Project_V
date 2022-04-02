@@ -11,14 +11,15 @@ if (isset($_POST['update_settings'])) {
     $sys_contacts = $_POST['sys_contacts'];
     $sys_postal_addr = $_POST['sys_postal_addr'];
     $sys_email = $_POST['sys_email'];
+    $sys_id = $_POST['sys_id'];
 
     /* Persist */
-    $sql = "UPDATE settings SET sys_name =?, sys_tagline =?, sys_contacts =?, sys_postal_addr =?, sys_email =?";
+    $sql = "UPDATE settings SET sys_name =?, sys_tagline =?, sys_contacts =?, sys_postal_addr =?, sys_email =? WHERE sys_id = '$sys_id'";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
         'sssss',
         $sys_name,
-        $sys_taagline,
+        $sys_tagline,
         $sys_contacts,
         $sys_postal_addr,
         $sys_email
@@ -67,6 +68,7 @@ require_once('../app/partials/head.php');
                         <h3 class="text-black font-w600">
                             System Settings
                         </h3>
+                        <small class="text-danger">Customize Your Report Heads Information</small>
                     </div>
                 </div>
                 <hr>
@@ -86,6 +88,7 @@ require_once('../app/partials/head.php');
                                             <div class="form-group col-md-6">
                                                 <label for="">Company Name</label>
                                                 <input type="text" required name="sys_name" value="<?php echo $row->sys_name; ?>" class="form-control">
+                                                <input type="hidden" required name="sys_id" value="<?php echo $row->sys_id; ?>" class="form-control">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="">Company Website</label>
