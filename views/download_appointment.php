@@ -16,10 +16,8 @@ $type = pathinfo($path, PATHINFO_EXTENSION);
 $data = file_get_contents($path);
 $app_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
 $id = $_GET['id'];
-
-
-$html = '<img src="' . $app_logo . '" align="center">';
-
+/* Load Partials from helpers */
+require_once('../app/helpers/appointment_dump.php');
 $dompdf->load_html($html);
 $dompdf->set_paper('A4');
 $dompdf->set_option('isHtml5ParserEnabled', true);
