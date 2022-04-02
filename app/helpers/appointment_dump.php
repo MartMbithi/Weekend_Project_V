@@ -74,8 +74,8 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 }
 
                 /* Thick red border */
-                hr.red {
-                    border: 1px solid red;
+                hr {
+                    border: 1px solid green dashed;
                 }
                 .list_header{
                     font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
@@ -84,18 +84,18 @@ $html = '<div style="margin:1px; page-break-after: always;">
             <div class="pagebreak">
             <div class="footer">
                 <hr>
-                <b>iAfya - The Ultimate Healthcare Information Management System</b>
+                <b>' . $row->sys_tagline . '</b>
             </div>
             <div class="body">
                 <h3 class="list_header" align="center">
                     <img src="' . $app_logo . '" align="center">
-                    <h3>
-                        iAfya  -  <br>
-
-                    </h3>
-
-                    <hr style="width:100%" , color=green>
-                    <h3>  APPOINTMENT REF# : ' . $id . '  </h3>
+                        <br>
+                        ' . $row->sys_name . ' <br>
+                        ' . $row->sys_contacts . ' <br>
+                        ' . $row->sys_email  . ' <br>
+                        ' . $row->sys_postal_addr . ' <br>
+                    <hr style="width:100%" >
+                      APPOINTMENT REF# : ' . $id . '  
                 </h3>
                 <img class="watermark" src="' . $app_watermark . '">
             </div>

@@ -22,9 +22,18 @@ $watermark_type = pathinfo($watermark_path, PATHINFO_EXTENSION);
 $watermark_data = file_get_contents($watermark_path);
 $app_watermark = 'data:image/' . $watermark_type . ';base64,' . base64_encode($watermark_data);
 
+/* Appointment Code */
 $id = $_GET['id'];
-/* Load Partials from helpers */
-require_once('../app/helpers/appointment_dump.php');
+$ret = "SELECT * FROM  settings s 
+JOIN appointments WHERE app_ref_code  = '$id'";
+$stmt = $mysqli->prepare($ret);
+$stmt->execute(); //ok
+$res = $stmt->get_result();
+while ($row = $res->fetch_object()) {
+
+    /* Load Partials from helpers */
+    require_once('../app/helpers/appointment_dump.php');
+}
 $dompdf->load_html($html);
 $dompdf->set_paper('A4');
 $dompdf->set_option('isHtml5ParserEnabled', true);
