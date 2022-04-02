@@ -24,7 +24,7 @@ $html = '<div style="margin:1px; page-break-after: always;">
                     text-align: center;
                     position: fixed;
                     bottom: 5px;
-                    font-size: 60%;
+                    font-size: 80%;
                 }
 
 
@@ -60,9 +60,14 @@ $html = '<div style="margin:1px; page-break-after: always;">
                     text-align:center;
                     width:33.33333%;
                 }
+
+                /* Letter Head */
+                .letter_head{
+                    color: green; 
+                }
             </style>
             <div class="pagebreak">
-            <div class="footer">
+            <div class="footer letter_head list_header">
                 <hr>
                 <b>' . $row->sys_tagline . '</b>
             </div>
@@ -76,7 +81,7 @@ $html = '<div style="margin:1px; page-break-after: always;">
                     ' . $row->sys_website  . ' <br>
                     ' . $row->sys_postal_addr . ' 
                 </h3>
-                <h3 class="list_header" align="center">
+                <h3 class="list_header letter_head" align="center">
                     <hr style="width:100%" >
                     APPOINTMENT DETAILS <br>
                     <hr style="width:100%" >
@@ -146,7 +151,7 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 </div>';  }
                 $html .= '
                 <br><br><br><br><br><br>
-                <h3 class="list_header" align="center">
+                <h3 class="list_header letter_head" align="center">
                     <hr style="width:100%" >
                     DESCRIPTION <br>
                     <hr style="width:100%" >
@@ -156,7 +161,7 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 </p>
             </body>
             <br><br><br><br><br><br>
-            <div class="list_header" align="center">
+            <div class="list_header letter_head" align="center">
                 <p>Scan To Verify</p>
                 <img src="' . $qrbase64 . '" width="150px" height="150px">
             </div>
