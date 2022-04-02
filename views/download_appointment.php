@@ -36,10 +36,20 @@ while ($row = $res->fetch_object()) {
     require_once('../app/helpers/appointment_dump.php');
 }
 $dompdf->load_html($html);
-$dompdf->set_paper('A4');
-$dompdf->set_option('isHtml5ParserEnabled', true);
+$canvas = $dompdf->getCanvas(); 
+$w = $canvas->get_width(); 
+$h = $canvas->get_height(); 
+$imageURL = '../assets/images/background.jpg'; 
+$imgWidth = 500; 
+$imgHeight = 500; 
+$canvas->set_opacity(.3); 
+$x = (($w-$imgWidth)/2); 
+$y = (($h-$imgHeight)/2); 
+$canvas->image($imageURL, $x, $y, $imgWidth, $imgHeight); 
 $dompdf->render();
 $dompdf->stream($id . '-Appointment', array("Attachment" => 1));
 $options = $dompdf->getOptions();
+$dompdf->set_paper('A4');
+$dompdf->set_option('isHtml5ParserEnabled', true);
 $options->setDefaultFont('');
 $dompdf->setOptions($options);
