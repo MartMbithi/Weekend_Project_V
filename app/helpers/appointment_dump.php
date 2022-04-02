@@ -61,35 +61,6 @@ $html = '<div style="margin:1px; page-break-after: always;">
                     font-weight: bold;
                 }
 
-                body {
-                    
-                }
-
-                .watermark{
-                    opacity: 0.75;
-                    background-image: url("' . $app_watermark . '");
-                    position: relative; 
-                    height: 100vh;
-                    width: 100%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    background-size: cover;
-
-                }
-
-                .watermark::before {    
-                    content: "";
-                    background-image: url("' . $app_watermark . '");
-                    background-size: cover;
-                    position: absolute;
-                    top: 0px;
-                    right: 0px;
-                    bottom: 0px;
-                    left: 0px;
-                    opacity: 0.75;
-                }
-               
                 .pagenum:before {
                     content: counter(page);
                 }
@@ -122,8 +93,42 @@ $html = '<div style="margin:1px; page-break-after: always;">
                         <hr style="width:100%" ><br>
                         APPOINTMENT REF# : ' . $id . '  
                     </h3>
-                    <h5 class="info">Patient Details</h5>
+                    <h5 class="info"><u>Patient Details</u></h5>
+                        ';
+                        $sql = "SELECT * FROM users WHERE user_id = '$row->app_user_id'";
+                        $prepare = $mysqli->prepare($sql);
+                        $prepare->execute(); //ok
+                        $return = $prepare->get_result();
+                        $grade_points = 0;
+                        $cumulative_cr_hrs = 0;
+                        while ($users = $return->fetch_object()) {
+                            $html .=
+                        '
+                        <p class="info">
+                        ' . $users->user_number . '<br>
+                        ' . $users->user_name . ' <br>
+                        ' . $users->user_email . ' <br>
+                        ' . $users->user_phone . ' <br>
+                        </p>'; }
+                        $html .= '                    
                     <h5 class="info">Doctor Details</h5>
+                    <p class="info">
+                    ';
+                        $sql = "SELECT * FROM users WHERE user_id = '$row->app_doc_id'";
+                        $prepare = $mysqli->prepare($sql);
+                        $prepare->execute(); //ok
+                        $return = $prepare->get_result();
+                        $grade_points = 0;
+                        $cumulative_cr_hrs = 0;
+                        while ($doc = $return->fetch_object()) {
+                            $html .=
+                        '
+                        ' . $doc->user_number . '<br>
+                        ' . $doc->user_name . ' <br>
+                        ' . $doc->user_email . ' <br>
+                        ' . $doc->user_phone . ' <br>
+                        </p>';  }
+                        $html .= '
                 </body>
             </div>
         </div>
