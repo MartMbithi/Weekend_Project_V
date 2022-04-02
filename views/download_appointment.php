@@ -6,11 +6,7 @@ check_login();
 require_once('../app/settings/codeGen.php');
 require_once('../vendor/autoload.php');
 
-/* Load Dom PDF */
-
 use Dompdf\Dompdf;
-/* Load Barcode */
-
 $dompdf = new Dompdf();
 
 /* Convert Logo To Base64 Image */
