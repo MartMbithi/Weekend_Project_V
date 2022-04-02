@@ -24,9 +24,9 @@ if (isset($_POST['update_settings'])) {
         $sys_email
     );
     $prepare->execute();
-    if($prepare){
+    if ($prepare) {
         $success = "System Data Updated";
-    }else{
+    } else {
         $err = "Failed!, Please Try Again";
     }
 }
@@ -73,41 +73,45 @@ require_once('../app/partials/head.php');
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="table-responsive">
-                            <form method="post" enctype="multipart/form-data" role="form">
-                                <div class="row">
-                                    <div class="form-group col-md-4">
-                                        <label for="">Number</label>
-                                        <input type="text" readonly required name="user_number" value="<?php echo $a . $b; ?>" readonly class="form-control">
+                            <?php
+                            $ret = "SELECT * FROM  settings";
+                            $stmt = $mysqli->prepare($ret);
+                            $stmt->execute(); //ok
+                            $res = $stmt->get_result();
+                            while ($row = $res->fetch_object()) {
+                            ?>
+                                <form method="post" enctype="multipart/form-data" role="form">
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="">Company Name</label>
+                                            <input type="text" required name="sys_name" name="<?php echo $row->sys_name; ?>" class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="">Company Website</label>
+                                            <input type="text" required name="sys_website" name="<?php echo $row->sys_website; ?>" class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="">Company Contacts</label>
+                                            <input type="text" required name="sys_contacts" name="<?php echo $row->sys_contacts; ?>" class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="">Company Email Address</label>
+                                            <input type="text" required name="sys_email" name="<?php echo $row->sys_email; ?>" class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="">Company Address</label>
+                                            <textarea type="text" name="sys_postal_addr" required class="form-control"><?php echo $row->sys_postal_addr; ?></textarea>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="">Company Tagline</label>
+                                            <textarea type="text" name="sys_tagline" required class="form-control"><?php echo $row->sys_tagline; ?></textarea>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="submit" name="update_settings" class="btn btn-success btn-roundedu">Register Patient</button>
+                                        </div>
                                     </div>
-                                    <div class="form-group col-md-8">
-                                        <label for="">Full Names</label>
-                                        <input type="text" required name="user_name" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="">Email</label>
-                                        <input type="email" required name="user_email" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="">Login Password</label>
-                                        <input type="password" required name="user_password" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="">Contacts</label>
-                                        <input type="text" required name="user_phone" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="">Age</label>
-                                        <input type="number" required name="user_age" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label for="">Address</label>
-                                        <textarea type="text" required name="user_address" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <button type="submit" name="add_patient" class="btn btn-success btn-roundedu">Register Patient</button>
-                                </div>
-                            </form>
+                                </form>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
