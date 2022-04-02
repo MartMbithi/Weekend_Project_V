@@ -7,6 +7,7 @@ require_once('../app/settings/codeGen.php');
 require_once('../vendor/autoload.php');
 
 use Dompdf\Dompdf;
+
 $dompdf = new Dompdf();
 
 /* Convert Logo To Base64 Image */
@@ -23,7 +24,7 @@ $dompdf->load_html($html);
 $dompdf->set_paper('A4');
 $dompdf->set_option('isHtml5ParserEnabled', true);
 $dompdf->render();
-$dompdf->stream('Test', array("Attachment" => 1));
+$dompdf->stream($id . '-Appointment', array("Attachment" => 1));
 $options = $dompdf->getOptions();
 $options->setDefaultFont('');
 $dompdf->setOptions($options);

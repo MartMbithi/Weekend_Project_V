@@ -68,7 +68,7 @@ require_once('../app/partials/head.php');
                                 <button type="button" class="btn btn-outline-primary btn-rounded  font-w600" data-toggle="dropdown" aria-expanded="false">
                                     <i class="las la-check-circle scale5 mr-3"></i>Approved
                                 </button>
-                                <a href="download_appointment?id=<?php echo $view; ?>" class="btn btn-outline-primary btn-rounded  font-w600">
+                                <a href="download_appointment?id=<?php echo $row->app_ref_code; ?>" class="btn btn-outline-primary btn-rounded  font-w600">
                                     <i class="scale5 mr-3 las la-file-download"></i> Download
                                 </a>
                             </div>
