@@ -5,9 +5,12 @@ require_once('../app/settings/checklogin.php');
 check_login();
 require_once('../app/settings/codeGen.php');
 require_once('../vendor/autoload.php');
+$id = $_GET['id'];
 
 use Dompdf\Dompdf;
+
 $dompdf = new Dompdf();
+
 
 /* Convert Logo To Base64 Image */
 $path = '../assets/images/logo.png';
@@ -15,37 +18,53 @@ $type = pathinfo($path, PATHINFO_EXTENSION);
 $data = file_get_contents($path);
 $app_logo = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-/* Convert Watermark TO Base64 Image */
-$watermark_path = '../assets/images/background.jpg';
-$watermark_type = pathinfo($watermark_path, PATHINFO_EXTENSION);
-$watermark_data = file_get_contents($watermark_path);
-$app_watermark = 'data:image/' . $watermark_type . ';base64,' . base64_encode($watermark_data);
+/* Generate QR Code */
+$targetPath = "../assets/images/barcodes/";
+if (!is_dir($targetPath)) {
+    mkdir($targetPath, 0777, true);
+}
+$code = $id;
+$qrcodedata = "$code - Valid Record";
+$bobj = $barcode->getBarcodeObj(
+    'QRCODE,H',
+    "{$qrcodedata}",
+    -4,
+    -4,
+    'black',
+    array(-2, -2, -2, -2)
+)->setBackgroundColor('white');
+$imageData = $bobj->getPngData();
+$timestamp = time();
+file_put_contents($targetPath . $timestamp . '.png', $imageData);
 
-/* Convert Barcode Generator  */
+/* Convert This QR Code To Base 64 Image */
+$qrpath = $targetPath . $timestamp . '.png';
+$qrtype = pathinfo($path, PATHINFO_EXTENSION);
+$qrdata = file_get_contents($qrpath);
+$qrbase64 = 'data:image/' . $qrtype . ';base64,' . base64_encode($qrdata);
+
 
 /* Appointment Code */
-$id = $_GET['id'];
 $ret = "SELECT * FROM  settings s 
 JOIN appointments WHERE app_ref_code  = '$id'";
 $stmt = $mysqli->prepare($ret);
 $stmt->execute(); //ok
 $res = $stmt->get_result();
 while ($row = $res->fetch_object()) {
-    $html = '<link rel="stylesheet" href="/css/bootstrap.min.css" />';
     /* Load Partials from helpers */
     require_once('../app/helpers/appointment_dump.php');
 }
 $dompdf->load_html($html);
-$canvas = $dompdf->getCanvas(); 
-$w = $canvas->get_width(); 
-$h = $canvas->get_height(); 
-$imageURL = '../assets/images/background.jpg'; 
-$imgWidth = 500; 
-$imgHeight = 500; 
-$canvas->set_opacity(.3); 
-$x = (($w-$imgWidth)/2); 
-$y = (($h-$imgHeight)/2); 
-$canvas->image($imageURL, $x, $y, $imgWidth, $imgHeight); 
+$canvas = $dompdf->getCanvas();
+$w = $canvas->get_width();
+$h = $canvas->get_height();
+$imageURL = '../assets/images/background.jpg';
+$imgWidth = 500;
+$imgHeight = 500;
+$canvas->set_opacity(.3);
+$x = (($w - $imgWidth) / 2);
+$y = (($h - $imgHeight) / 2);
+$canvas->image($imageURL, $x, $y, $imgWidth, $imgHeight);
 $dompdf->render();
 $dompdf->stream($id . '-Appointment', array("Attachment" => 1));
 $options = $dompdf->getOptions();

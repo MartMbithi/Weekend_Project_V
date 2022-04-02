@@ -66,96 +66,94 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 <hr>
                 <b>' . $row->sys_tagline . '</b>
             </div>
-            <div class="watermark">
-                <body>
-                    <h3 class="list_header" align="center">
-                        <img src="' . $app_logo . '" align="center">
-                        <br>
-                        ' . $row->sys_name . ' <br>
-                        ' . $row->sys_contacts . ' <br>
-                        ' . $row->sys_email  . ' <br>
-                        ' . $row->sys_website  . ' <br>
-                        ' . $row->sys_postal_addr . ' 
-                    </h3>
-                    <h3 class="list_header" align="center">
-                        <hr style="width:100%" >
-                        APPOINTMENT DETAILS <br>
-                        <hr style="width:100%" >
-                    </h3>
+            <body>
+                <h3 class="list_header" align="center">
+                    <img src="' . $app_logo . '" align="center">
                     <br>
-                    <div id="textbox">
+                    ' . $row->sys_name . ' <br>
+                    ' . $row->sys_contacts . ' <br>
+                    ' . $row->sys_email  . ' <br>
+                    ' . $row->sys_website  . ' <br>
+                    ' . $row->sys_postal_addr . ' 
+                </h3>
+                <h3 class="list_header" align="center">
+                    <hr style="width:100%" >
+                    APPOINTMENT DETAILS <br>
+                    <hr style="width:100%" >
+                </h3>
+                <br>
+                <div id="textbox">
+                    ';
+                    $sql = "SELECT * FROM users WHERE user_id = '$row->app_user_id'";
+                    $prepare = $mysqli->prepare($sql);
+                    $prepare->execute(); //ok
+                    $return = $prepare->get_result();
+                    $grade_points = 0;
+                    $cumulative_cr_hrs = 0;
+                    while ($users = $return->fetch_object()) {
+                        $html .=
+                    '
+                        <p class="patient_details list_header">
+                            <b> 
+                                <u>
+                                    Patient Details
+                                </u>
+                            </b>
+                            <br>
+                                ' . $users->user_number . '<br>
+                                ' . $users->user_name . ' <br>
+                                ' . $users->user_email . ' <br>
+                                ' . $users->user_phone . ' 
+                            <br>
+                        </p>
+                    '; }
+                    $html .= '  
+                    <p class="appointment_details list_header">
+                        <b>
+                            <u>
+                                Appointment Info
+                            </u>
+                        </b>
+                        <br>
+                            Ref: ' . $id . '<br>
+                            Date: ' . $row->app_date . ' <br>
+                            Status:  ' . $row->app_status . ' <br>
+                        <br>
+                    </p>             
+                    <p class="doctor_details list_header">
                         ';
-                        $sql = "SELECT * FROM users WHERE user_id = '$row->app_user_id'";
+                        $sql = "SELECT * FROM users WHERE user_id = '$row->app_doc_id'";
                         $prepare = $mysqli->prepare($sql);
                         $prepare->execute(); //ok
                         $return = $prepare->get_result();
                         $grade_points = 0;
                         $cumulative_cr_hrs = 0;
-                        while ($users = $return->fetch_object()) {
+                        while ($doc = $return->fetch_object()) {
                             $html .=
-                        '
-                            <p class="patient_details list_header">
-                                <b> 
-                                    <u>
-                                        Patient Details
-                                    </u>
-                                </b>
-                                <br>
-                                    ' . $users->user_number . '<br>
-                                    ' . $users->user_name . ' <br>
-                                    ' . $users->user_email . ' <br>
-                                    ' . $users->user_phone . ' 
-                                <br>
-                            </p>
-                        '; }
-                        $html .= '  
-                        <p class="appointment_details list_header">
+                            '
                             <b>
                                 <u>
-                                    Appointment Info
+                                    Doctor Details
                                 </u>
                             </b>
                             <br>
-                                Ref: ' . $id . '<br>
-                                Date: ' . $row->app_date . ' <br>
-                                Status:  ' . $row->app_status . ' <br>
+                                ' . $doc->user_number . '<br>
+                                ' . $doc->user_name . ' <br>
+                                ' . $doc->user_email . ' <br>
+                                ' . $doc->user_phone . '
                             <br>
-                        </p>             
-                        <p class="doctor_details list_header">
-                            ';
-                            $sql = "SELECT * FROM users WHERE user_id = '$row->app_doc_id'";
-                            $prepare = $mysqli->prepare($sql);
-                            $prepare->execute(); //ok
-                            $return = $prepare->get_result();
-                            $grade_points = 0;
-                            $cumulative_cr_hrs = 0;
-                            while ($doc = $return->fetch_object()) {
-                                $html .=
-                                '
-                                <b>
-                                    <u>
-                                        Doctor Details
-                                    </u>
-                                </b>
-                                <br>
-                                    ' . $doc->user_number . '<br>
-                                    ' . $doc->user_name . ' <br>
-                                    ' . $doc->user_email . ' <br>
-                                    ' . $doc->user_phone . '
-                                <br>
-                        </p>
-                    </div>';  }
-                    $html .= '
-                    <br><br><br><br><br><br>
-                    <h3 class="list_header" align="center">
-                        <hr style="width:100%" >
-                        APPOINTMENT DESCRIPTION <br>
-                        <hr style="width:100%" >
-                    </h3>
-                    <p class="list_header">
-                    ' . $row->app_details . '
                     </p>
-                </body>
-            </div>
+                </div>';  }
+                $html .= '
+                <br><br><br><br><br><br>
+                <h3 class="list_header" align="center">
+                    <hr style="width:100%" >
+                    APPOINTMENT DESCRIPTION <br>
+                    <hr style="width:100%" >
+                </h3>
+                <p class="list_header">
+                ' . $row->app_details . '
+                </p>
+            </body>
         </div>
     </div>';
