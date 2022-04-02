@@ -72,68 +72,71 @@ require_once('../app/partials/head.php');
                 <hr>
                 <div class="row">
                     <div class="col-xl-12">
-                        <div class="table-responsive">
-                            <?php
-                            $ret = "SELECT * FROM  settings";
-                            $stmt = $mysqli->prepare($ret);
-                            $stmt->execute(); //ok
-                            $res = $stmt->get_result();
-                            while ($row = $res->fetch_object()) {
-                            ?>
-                                <form method="post" enctype="multipart/form-data" role="form">
-                                    <div class="row">
-                                        <div class="form-group col-md-12">
-                                            <label for="">Company Name</label>
-                                            <input type="text" required name="sys_name" name="<?php echo $row->sys_name; ?>" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="">Company Website</label>
-                                            <input type="text" required name="sys_website" name="<?php echo $row->sys_website; ?>" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="">Company Contacts</label>
-                                            <input type="text" required name="sys_contacts" name="<?php echo $row->sys_contacts; ?>" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="">Company Email Address</label>
-                                            <input type="text" required name="sys_email" name="<?php echo $row->sys_email; ?>" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="">Company Address</label>
-                                            <textarea type="text" name="sys_postal_addr" required class="form-control"><?php echo $row->sys_postal_addr; ?></textarea>
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="">Company Tagline</label>
-                                            <textarea type="text" name="sys_tagline" required class="form-control"><?php echo $row->sys_tagline; ?></textarea>
+                        <div class="card">
+                            <div class="card-body">
+                                <?php
+                                $ret = "SELECT * FROM  settings";
+                                $stmt = $mysqli->prepare($ret);
+                                $stmt->execute(); //ok
+                                $res = $stmt->get_result();
+                                while ($row = $res->fetch_object()) {
+                                ?>
+                                    <form method="post" enctype="multipart/form-data" role="form">
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="">Company Name</label>
+                                                <input type="text" required name="sys_name" value="<?php echo $row->sys_name; ?>" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="">Company Website</label>
+                                                <input type="text" required name="sys_website" value="<?php echo $row->sys_website; ?>" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="">Company Contacts</label>
+                                                <input type="text" required name="sys_contacts" value="<?php echo $row->sys_contacts; ?>" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="">Company Email Address</label>
+                                                <input type="text" required name="sys_email" value="<?php echo $row->sys_email; ?>" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="">Company Postal Address</label>
+                                                <textarea type="text" name="sys_postal_addr" required class="form-control"><?php echo $row->sys_postal_addr; ?></textarea>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="">Company Tagline</label>
+                                                <textarea type="text" name="sys_tagline" required class="form-control"><?php echo $row->sys_tagline; ?></textarea>
+                                            </div>
                                         </div>
                                         <div class="text-right">
-                                            <button type="submit" name="update_settings" class="btn btn-success btn-roundedu">Register Patient</button>
+                                            <button type="submit" name="update_settings" class="btn btn-success btn-roundedu">Update</button>
                                         </div>
-                                    </div>
-                                </form>
-                            <?php } ?>
+                                    </form>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--**********************************
+    </div>
+    <!--**********************************
             Content body end
         ***********************************-->
 
-        <!--**********************************
+    <!--**********************************
             Footer start
         ***********************************-->
-        <?php require_once('../app/partials/footer.php'); ?>
-        <!--**********************************
+    <?php require_once('../app/partials/footer.php'); ?>
+    <!--**********************************
             Footer end
         ***********************************-->
 
-        <!--**********************************
+    <!--**********************************
            Support ticket button start
         ***********************************-->
 
-        <!--**********************************
+    <!--**********************************
            Support ticket button end
         ***********************************-->
 
