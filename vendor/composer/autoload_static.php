@@ -24,6 +24,11 @@ class ComposerStaticInitb7533ab351e6c342c648fd186b20d680
         array (
             'Dompdf\\' => 7,
         ),
+        'C' => 
+        array (
+            'Com\\Tecnick\\Color\\' => 18,
+            'Com\\Tecnick\\Barcode\\' => 20,
+        ),
         'A' => 
         array (
             'Ayeo\\Barcode\\' => 13,
@@ -50,6 +55,14 @@ class ComposerStaticInitb7533ab351e6c342c648fd186b20d680
         'Dompdf\\' => 
         array (
             0 => __DIR__ . '/..' . '/dompdf/dompdf/src',
+        ),
+        'Com\\Tecnick\\Color\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tecnickcom/tc-lib-color/src',
+        ),
+        'Com\\Tecnick\\Barcode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tecnickcom/tc-lib-barcode/src',
         ),
         'Ayeo\\Barcode\\' => 
         array (
