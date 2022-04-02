@@ -74,6 +74,7 @@ $html = '<div style="margin:1px; page-break-after: always;">
                         ' . $row->sys_name . ' <br>
                         ' . $row->sys_contacts . ' <br>
                         ' . $row->sys_email  . ' <br>
+                        ' . $row->sys_website  . ' <br>
                         ' . $row->sys_postal_addr . ' 
                     </h3>
                     <h3 class="list_header" align="center">
@@ -151,7 +152,9 @@ $html = '<div style="margin:1px; page-break-after: always;">
                         APPOINTMENT DESCRIPTION <br>
                         <hr style="width:100%" >
                     </h3>
-
+                    <p class="list_header">
+                    ' . $row->app_details . '
+                    </p>
                 </body>
             </div>
         </div>
