@@ -155,5 +155,10 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 ' . $row->app_details . '
                 </p>
             </body>
+            <br><br><br>
+            <div class="list_header" align="center">
+                <h6>Scan To Verify</h6>
+                <img src="' . $qrbase64 . '" width="200px" height="200px">
+            </div>
         </div>
     </div>';

@@ -10,7 +10,7 @@ $id = $_GET['id'];
 use Dompdf\Dompdf;
 
 $dompdf = new Dompdf();
-
+$barcode = new \Com\Tecnick\Barcode\Barcode();
 
 /* Convert Logo To Base64 Image */
 $path = '../assets/images/logo.png';
