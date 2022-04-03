@@ -45,7 +45,7 @@ $qrbase64 = 'data:image/' . $qrtype . ';base64,' . base64_encode($qrdata);
 
 
 /* Appointment Code */
-$ret = "SELECT * FROM  settings s 
+$ret = "SELECT * FROM  settings 
 JOIN bills b INNER JOIN diagonisis d ON d.diag_id = b.bill_diag_id
 INNER JOIN users u ON u.user_id = d.diag_patient_id 
 WHERE b.bill_ref_code  = '$id'";
