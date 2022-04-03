@@ -37,7 +37,7 @@ while ($settings = $res->fetch_object()) {
                                 <div class="col-xl-12"><br>
                                     <h4 class="text-center mb-4">
                                         <img src="../assets/images/logo.png">
-                                        <b> <?php echo $s->sys_name; ?> <br> Healthcare Information Management System </b>
+                                        <b> <?php echo $settings->sys_name; ?> <br> Healthcare Information Management System </b>
                                     </h4>
                                     <hr>
                                     <div class="auth-form ">
