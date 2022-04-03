@@ -73,12 +73,12 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 .invoice-box {
                     margin: auto;
                     padding: 30px;
-                    border: 1px solid #eee;
+                    border: 1px solid #006400;
                     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
                     font-size: 16px;
                     line-height: 24px;
                     font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-                    color: #555;
+                    color: #000;
                 }
                 .invoice-box table {
                     width: 100%;
@@ -98,7 +98,7 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 .invoice-box table tr.top table td.title {
                     font-size: 45px;
                     line-height: 45px;
-                    color: #333;
+                    color: #000;
                 }
                 .invoice-box table tr.information table td {
                     padding-bottom: 40px;
@@ -112,13 +112,13 @@ $html = '<div style="margin:1px; page-break-after: always;">
                     padding-bottom: 20px;
                 }
                 .invoice-box table tr.item td {
-                    border-bottom: 1px solid #eee;
+                    border-bottom: 1px solid #000;
                 }
                 .invoice-box table tr.item.last td {
                     border-bottom: none;
                 }
                 .invoice-box table tr.total td:nth-child(2) {
-                    border-top: 2px solid #eee;
+                    border-top: 2px;
                     font-weight: bold;
                 }
                 @media only screen and (max-width: 600px) {
@@ -168,39 +168,33 @@ $html = '<div style="margin:1px; page-break-after: always;">
                     PAYMENT RECEIPT NO: ' . $b . ' <br>
                     <hr style="width:100%" >
                 </h3>
-                <div id="textbox">
-                    <p class="doctor_details list_header">
-                        <b> 
-                            <u>
-                                Patient Details
-                            </u>
-                        </b>
-                        <br>
-                            ' . $row->user_number . '<br>
-                            ' . $row->user_name . ' <br>
-                            ' . $row->user_email . ' <br>
-                            ' . $row->user_phone . ' 
-                        <br>
-                    </p>
-                </div>
-                <br><br><br>
+                <br>
                 <div class="invoice-box">
                     <table cellpadding="0" cellspacing="0">
-                        <tr class="top">
+                        <tr class="information">
                             <td colspan="2">
                                 <table>
                                     <tr>
+                                    <td>
+                                        Payment REF #: ' . $row->bill_ref_code . '<br />
+                                        Created: ' . $row->bill_date_added . '<br />
+                                        <span class="letter_head">
+                                            Status : PAID
+                                        </span>
+                                    </td>
                                         <td>
-                                            Payment REF #: ' . $row->bill_ref_code . '<br />
-                                            Created: ' . $row->bill_date_added . '<br />
+                                            ' . $row->user_number . '<br>
+                                            ' . $row->user_name . ' <br>
+                                            ' . $row->user_email . ' <br>
+                                            ' . $row->user_phone . ' 
                                         </td>
                                     </tr>
                                 </table>
                             </td>
                         </tr>
                         <tr class="heading">
-                            <td>Item</td>
-                            <td>Price</td>
+                            <td class="letter_head">Item</td>
+                            <td class="letter_head">Price</td>
                         </tr>
                         <tr class="item">
                             <td>' . $row->diad_ref . '<br>' . $row->diag_title . ' Payment </td>
@@ -208,7 +202,7 @@ $html = '<div style="margin:1px; page-break-after: always;">
                         </tr>
                         <tr class="total">
                             <td></td>
-                            <td>Total: Ksh ' . number_format($row->bill_amount, 2) . '</td>
+                            <td class="letter_head">Total: Ksh ' . number_format($row->bill_amount, 2) . '</td>
                         </tr>
                     </table>
                 </div>
