@@ -1,4 +1,5 @@
 <?php
+
 $user_id = $_SESSION['user_id'];
 $access_level = $_SESSION['user_access_level'];
 
