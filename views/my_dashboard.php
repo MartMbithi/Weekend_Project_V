@@ -45,12 +45,19 @@ $user_id = $_SESSION['user_id'];
         <div class="content-body">
             <!-- row -->
             <div class="container-fluid">
-                <div class="form-head d-flex mb-3 mb-md-4 align-items-start">
-                    <div class="mr-auto d-none d-lg-block">
-                        <h3 class="text-black font-w600">Welcome to iAfya!</h3>
-                        <p class="mb-0 fs-18">The Ultimate Healthcare Information Management System</p>
+                <?php
+                $ret = "SELECT * FROM  settings";
+                $stmt = $mysqli->prepare($ret);
+                $stmt->execute(); //ok
+                $res = $stmt->get_result();
+                while ($settings = $res->fetch_object()) { ?>
+                    <div class="form-head d-flex mb-3 mb-md-4 align-items-start">
+                        <div class="mr-auto d-none d-lg-block">
+                            <h3 class="text-black font-w600">Welcome to <?php echo $settings->sys_name; ?>!</h3>
+                            <p class="mb-0 fs-18"><?php echo $settings->sys_tagline; ?></p>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
                 <div class="row">
                     <div class="col-4">
                         <a href="my_appointments">
