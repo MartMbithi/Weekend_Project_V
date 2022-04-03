@@ -24,7 +24,7 @@ $html = '<div style="margin:1px; page-break-after: always;">
                     text-align: center;
                     position: fixed;
                     bottom: 5px;
-                    font-size: 80%;
+                    font-size: 60%;
                 }
 
 
@@ -66,6 +66,11 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 .letter_head{
                     color: green; 
                 }
+
+                .pagenum:before {
+                    content: counter(page);
+                }
+
             </style>
             <div class="pagebreak">
             <div class="footer letter_head list_header">
@@ -151,10 +156,9 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 </div>';  }
                 $html .= '
                 <br><br><br><br><br><br>
-                <h3 class="list_header letter_head" align="center">
+                <h3 class="list_header letter_head" >
                     <hr style="width:100%" >
-                        DIAGNOSIS, PRESCRIPTIONS & TREATMENT DETAILS
-                        <br>
+                    TREATMENT DETAILS <br>
                     <hr style="width:100%" >
                 </h3>
                 <h5 class="list_header letter_head">
@@ -164,10 +168,10 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 ' . $row->diag_details . '
                 </p>
             </body>
-            <br><br><br><br><br><br>
+            <br><br><br><br>
             <div class="list_header letter_head" align="center">
                 <p>Scan To Verify</p>
-                <img src="' . $qrbase64 . '" width="150px" height="150px">
+                <img src="' . $qrbase64 . '" width="100px" height="100px">
             </div>
         </div>
     </div>';
