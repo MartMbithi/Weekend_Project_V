@@ -53,6 +53,13 @@ require_once('../app/partials/head.php');
                             <li class="breadcrumb-item"><a href="javascript:void(0)"><?php echo $row->diad_ref; ?></a></li>
                         </ol>
                     </div>
+                    <div class="d-md-flex d-block mb-3 align-items-center">
+                        <div class="dropdown d-inline-block ml-auto mr-2">
+                            <a href="download_diagonisis?id=<?php echo $row->diad_ref; ?>" class="btn btn-outline-primary btn-rounded  font-w600">
+                                <i class="scale5 mr-3 las la-file-download"></i> Download
+                            </a>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-6">
