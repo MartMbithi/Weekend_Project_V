@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 01, 2022 at 06:26 AM
+-- Generation Time: Apr 03, 2022 at 09:23 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -96,12 +96,68 @@ CREATE TABLE `diagonisis` (
 --
 
 INSERT INTO `diagonisis` (`diag_id`, `diad_ref`, `diag_patient_id`, `diag_doctor_id`, `diag_title`, `diag_details`, `diag_date_created`, `diag_cost`, `diag_payment_status`) VALUES
-(1, 'WZVBG39021', 2, 1, 'Pneumonia', 'Infection that inflames air sacs in one or both lungs, which may fill with fluid.  With pneumonia, the air sacs may fill with fluid or pus. The infection can be life-threatening to anyone, but particularly to infants, children and people over 65. Symptoms include a cough with phlegm or pus, fever, chills and difficulty breathing. Antibiotics can treat many forms of pneumonia. Some forms of pneumonia can be prevented by vaccines.\r\n\r\nRequires a medical diagnosis Symptoms include a cough with phlegm or pus, fever, chills and difficulty breathing.\r\nPeople may experience: Pain types: can be sharp in the chest Whole body: fever, chills, dehydration, fatigue, loss of appetite, malaise, clammy skin, or sweating Respiratory: fast breathing, shallow breathing, shortness of breath, or wheezing Also common: cough or fast heart rate\r\nAntibiotics can treat many forms of pneumonia. Some forms of pneumonia can be prevented by vaccines.', '2022-03-31', '90000', 'Paid'),
+(1, 'WZVBG39021', 2, 1, 'Pneumonia', 'Infection that inflames air sacs in one or both lungs, which may fill with fluid.  With pneumonia, the air sacs may fill with fluid or pus. The infection can be life-threatening to anyone, but particularly to infants, children and people over 65. Symptoms include a cough with phlegm or pus, fever, chills and difficulty breathing. Antibiotics can treat many forms of pneumonia. Some forms of pneumonia can be prevented by vaccines.\n\nRequires a medical diagnosis Symptoms include a cough with phlegm or pus, fever, chills and difficulty breathing.\nPeople may experience: Pain types: can be sharp in the chest Whole body: fever, chills, dehydration, fatigue, loss of appetite, malaise, clammy skin, or sweating Respiratory: fast breathing, shallow breathing, shortness of breath, or wheezing Also common: cough or fast heart rate\nAntibiotics can treat many forms of pneumonia. Some forms of pneumonia can be prevented by vaccines.  Infection that inflames air sacs in one or both lungs, which may fill with fluid. With pneumonia, the air sacs may fill with fluid or pus. The infection can be life-threatening to anyone, but particularly to infants, children and people over 65. Symptoms include a cough with phlegm or pus, fever, chills and difficulty breathing. Antibiotics can treat many forms of pneumonia. Some forms of pneumonia can be prevented by vaccines. Requires a medical diagnosis Symptoms include a cough with phlegm or pus, fever, chills and difficulty breathing. People may experience: Pain types: can be sharp in the chest Whole body: fever, chills, dehydration, fatigue, loss of appetite, malaise, clammy skin, or sweating Respiratory: fast breathing, shallow breathing, shortness of breath, or wheezing Also common: cough or fast heart rate Antibiotics can treat many forms of pneumonia. Some forms of pneumonia can be prevented by vaccines.   Infection that inflames air sacs in one or both lungs, which may fill with fluid. With pneumonia, the air sacs may fill with fluid or pus. The infection can be life-threatening to anyone, but particularly to infants, children and people over 65. Symptoms include a cough with phlegm or pus, fever, chills and difficulty breathing. Antibiotics can treat many forms of pneumonia. Some forms of pneumonia can be prevented by vaccines. Requires a medical diagnosis Symptoms include a cough with phlegm or pus, fever, chills and difficulty breathing. People may experience: Pain types: can be sharp in the chest Whole body: fever, chills, dehydration, fatigue, loss of appetite, malaise, clammy skin, or sweating Respiratory: fast breathing, shallow breathing, shortness of breath, or wheezing Also common: cough or fast heart rate Antibiotics can treat many forms of pneumonia. Some forms of pneumonia can be prevented by vaccines. ', '2022-03-31', '90000', 'Paid'),
 (4, 'BXSJG65103', 2, 1, 'Lorem Ipsum -femo', 'Medical diagnosis is the process of determining which disease or condition explains a person\'s symptoms and signs. It is most often referred to as diagnosis with the medical context being implicit. Wikipedia', '2022-04-01', '50000', 'Paid'),
 (5, 'MICWG58264', 8, 3, 'Pneumonia', '    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2022-04-01', '35000', 'Paid'),
 (6, 'QUZIY95726', 8, 1, 'Cancer Screening', '    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2022-04-01', '96000', 'Paid'),
 (7, 'PWNKS81462', 8, 1, 'Cancer Screening', '    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2022-04-01', '96000', 'Paid'),
 (8, 'SJOGW01759', 8, 5, 'Chest XRAY', '    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2022-04-19', '5500', 'Pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `sys_id` int(200) NOT NULL,
+  `sys_name` longtext NOT NULL,
+  `sys_website` longtext NOT NULL,
+  `sys_tagline` longtext NOT NULL,
+  `sys_contacts` longtext NOT NULL,
+  `sys_postal_addr` longtext NOT NULL,
+  `sys_email` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`sys_id`, `sys_name`, `sys_website`, `sys_tagline`, `sys_contacts`, `sys_postal_addr`, `sys_email`) VALUES
+(1, 'iAfya', 'www.iafya.com', 'The Ultimate Healthcare Information Management System.', '+257737229776 / +254740847563', 'P.O BOX 123-90763 NAIROBI', 'info@iafya.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `surveys`
+--
+
+CREATE TABLE `surveys` (
+  `survey_id` int(200) NOT NULL,
+  `survey_ref` varchar(200) NOT NULL,
+  `survey_user_id` int(200) NOT NULL,
+  `survey_user_dob` varchar(200) DEFAULT NULL,
+  `survey_user_gender` varchar(200) DEFAULT NULL,
+  `survey_syptoms` longtext DEFAULT NULL,
+  `survey_other_difficulties` longtext DEFAULT NULL,
+  `survey_user_ailments` longtext DEFAULT NULL,
+  `survey_travel_history` longtext DEFAULT NULL,
+  `survey_user_travel` longtext DEFAULT NULL,
+  `survey_user_people_contacted` longtext DEFAULT NULL,
+  `survey_user_fam_members` longtext DEFAULT NULL,
+  `survey_user_tests` longtext DEFAULT NULL,
+  `survey_user_vaccination` longtext DEFAULT NULL,
+  `survey_date_added` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `surveys`
+--
+
+INSERT INTO `surveys` (`survey_id`, `survey_ref`, `survey_user_id`, `survey_user_dob`, `survey_user_gender`, `survey_syptoms`, `survey_other_difficulties`, `survey_user_ailments`, `survey_travel_history`, `survey_user_travel`, `survey_user_people_contacted`, `survey_user_fam_members`, `survey_user_tests`, `survey_user_vaccination`, `survey_date_added`) VALUES
+(1, 'JHMAB05812', 2, '20', 'Muscle Pain', NULL, '', 'None', 'Nairobi', 'Yes', '100-200', '2-4', 'No', 'No', '2022-04-01 09:59:19'),
+(2, 'ZLFYB06584', 2, '20', 'Male', 'Colds', '', 'None', 'Machakos', 'Yes', '0-100', '0-2', 'Yes', 'Yes', '2022-04-01 10:10:58'),
+(3, 'VJKWG83017', 2, '20', 'Male', 'Muscle Pain', '', 'Bronchitis', 'Machakos', 'Yes', '0-100', '0-2', 'Yes', 'Yes', '2022-04-01 10:11:40');
 
 -- --------------------------------------------------------
 
@@ -128,7 +184,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_number`, `user_name`, `user_email`, `user_phone`, `user_age`, `user_address`, `user_passport`, `user_date_added`, `user_password`, `user_access_level`) VALUES
-(1, 'USR-00952FD', 'Sys Admin', 'sysadmin@gmail.com', '0977865-0987', '39', '9078741 Localhost', NULL, '12/12/2012', '13374ffc272cc6c4c2e4dd5327aaae9d08eb4e4f', 'admin'),
+(1, 'USR-00952FD', 'Sys Admin', 'sysadmin@gmail.com', '0977865-0987', '39', '9078741 Localhost', NULL, '12/12/2012', 'a69681bcf334ae130217fea4505fd3c994f5683f', 'admin'),
 (2, 'USR-00952FD', 'James Doe', 'jdoe@iafya.com', '0977865-0987', '39', '9078741 Localhost', NULL, '12/12/2012', '13374ffc272cc6c4c2e4dd5327aaae9d08eb4e4f', 'patient'),
 (3, 'UYSTM56789', 'Doctor Apache', 'docpache@gmail.com', '09888778990', '30', '90126 Localhost', NULL, '27 Mar 2022', 'a69681bcf334ae130217fea4505fd3c994f5683f', 'doctor'),
 (4, 'YJFIT60173', 'Doc Wilfred K', 'wilfred123@gmail.com', '1234567889', '29', '902276 Lake View', NULL, '27 Mar 2022', 'a69681bcf334ae130217fea4505fd3c994f5683f', 'doctor'),
@@ -168,6 +224,19 @@ ALTER TABLE `diagonisis`
   ADD KEY `DiagPatient` (`diag_patient_id`);
 
 --
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`sys_id`);
+
+--
+-- Indexes for table `surveys`
+--
+ALTER TABLE `surveys`
+  ADD PRIMARY KEY (`survey_id`),
+  ADD KEY `Survey_User_ID` (`survey_user_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -194,6 +263,18 @@ ALTER TABLE `bills`
 --
 ALTER TABLE `diagonisis`
   MODIFY `diag_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `sys_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `surveys`
+--
+ALTER TABLE `surveys`
+  MODIFY `survey_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -225,6 +306,12 @@ ALTER TABLE `bills`
 ALTER TABLE `diagonisis`
   ADD CONSTRAINT `DiagDoc` FOREIGN KEY (`diag_doctor_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `DiagPatient` FOREIGN KEY (`diag_patient_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `surveys`
+--
+ALTER TABLE `surveys`
+  ADD CONSTRAINT `Survey_User_ID` FOREIGN KEY (`survey_user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

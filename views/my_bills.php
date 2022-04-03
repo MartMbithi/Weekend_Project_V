@@ -50,6 +50,7 @@ require_once('../app/partials/head.php');
                                         <th>Payment Details</th>
                                         <th>Diagnosis Details</th>
                                         <th>Patient Details</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -79,6 +80,11 @@ require_once('../app/partials/head.php');
                                                 Number: <?php echo $row->user_number; ?><br>
                                                 Name: <?php echo $row->user_name; ?><br>
                                                 Contacts: <?php echo $row->user_phone; ?>
+                                            </td>
+                                            <td>
+                                                <a href="download_receipt?id=<?php echo $row->bill_ref_code; ?>" class="btn btn-outline-primary btn-rounded  font-w600">
+                                                    <i class="scale5 mr-3 las la-file-download"></i> Download
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php } ?>

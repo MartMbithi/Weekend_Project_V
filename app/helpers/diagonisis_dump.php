@@ -24,7 +24,7 @@ $html = '<div style="margin:1px; page-break-after: always;">
                     text-align: center;
                     position: fixed;
                     bottom: 5px;
-                    font-size: 80%;
+                    font-size: 60%;
                 }
 
 
@@ -36,7 +36,7 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 hr {
                     border: 1px solid green dashed;
                 }
-
+                
                 .list_header{
                     font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
                 }
@@ -66,6 +66,11 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 .letter_head{
                     color: green; 
                 }
+
+                .pagenum:before {
+                    content: counter(page);
+                }
+
             </style>
             <div class="pagebreak">
             <div class="footer letter_head list_header">
@@ -84,16 +89,18 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 </h3>
                 <h3 class="list_header letter_head" align="center">
                     <hr style="width:100%" >
-                    APPOINTMENT DETAILS <br>
+                    MEDICAL RECORD <br>
                     <hr style="width:100%" >
                 </h3>
                 <br>
                 <div id="textbox">
                     ';
-                    $sql = "SELECT * FROM users WHERE user_id = '$row->app_user_id'";
+                    $sql = "SELECT * FROM users WHERE user_id = '$row->diag_patient_id'";
                     $prepare = $mysqli->prepare($sql);
                     $prepare->execute(); //ok
                     $return = $prepare->get_result();
+                    $grade_points = 0;
+                    $cumulative_cr_hrs = 0;
                     while ($users = $return->fetch_object()) {
                         $html .=
                     '
@@ -115,23 +122,22 @@ $html = '<div style="margin:1px; page-break-after: always;">
                     <p class="appointment_details list_header">
                         <b>
                             <u>
-                                Appointment Info
+                                Medical Info
                             </u>
                         </b>
                         <br>
                             Ref: ' . $id . '<br>
-                            Date: ' . date('d M Y', strtotime($row->app_date)) . ' <br>
-                            Status:  ' . $row->app_status . ' <br>
+                            Date: ' . date('d M Y', strtotime($row->diag_date_created)) . ' <br>
+                            Cost:  Ksh ' . number_format($row->diag_cost, 2). ' <br>
+                            Payment Status:  ' . $row->diag_payment_status. ' <br>
                         <br>
                     </p>             
                     <p class="doctor_details list_header">
                         ';
-                        $sql = "SELECT * FROM users WHERE user_id = '$row->app_doc_id'";
+                        $sql = "SELECT * FROM users WHERE user_id = '$row->diag_doctor_id'";
                         $prepare = $mysqli->prepare($sql);
                         $prepare->execute(); //ok
                         $return = $prepare->get_result();
-                        $grade_points = 0;
-                        $cumulative_cr_hrs = 0;
                         while ($doc = $return->fetch_object()) {
                             $html .=
                             '
@@ -150,19 +156,22 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 </div>';  }
                 $html .= '
                 <br><br><br><br><br><br>
-                <h3 class="list_header letter_head" align="center">
+                <h3 class="list_header letter_head" >
                     <hr style="width:100%" >
-                    DESCRIPTION <br>
+                    TREATMENT DETAILS <br>
                     <hr style="width:100%" >
                 </h3>
+                <h5 class="list_header letter_head">
+                ' . $row->diag_title . '
+                </h5>
                 <p class="list_header">
-                ' . $row->app_details . '
+                ' . $row->diag_details . '
                 </p>
             </body>
-            <br><br><br><br><br><br>
+            <br><br><br><br>
             <div class="list_header letter_head" align="center">
                 <p>Scan To Verify</p>
-                <img src="' . $qrbase64 . '" width="150px" height="150px">
+                <img src="' . $qrbase64 . '" width="100px" height="100px">
             </div>
         </div>
     </div>';

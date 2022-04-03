@@ -113,6 +113,7 @@ require_once('../app/partials/head.php');
                                                             </svg>
                                                         </div>
                                                         <div class="dropdown-menu dropdown-menu-right">
+                                                            <a  class="dropdown-item text-success" href="download_receipt?id=<?php echo $row->bill_ref_code; ?>">Download</a>
                                                             <a data-toggle="modal" class="dropdown-item text-danger" href="#delete_<?php echo $row->bill_id; ?>">Delete</a>
                                                         </div>
                                                     </div>
