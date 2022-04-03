@@ -46,7 +46,7 @@ $qrbase64 = 'data:image/' . $qrtype . ';base64,' . base64_encode($qrdata);
 
 /* Appointment Code */
 $ret = "SELECT * FROM  settings s 
-JOIN appointments WHERE app_ref_code  = '$id'";
+JOIN diagonisis WHERE diag_ref  = '$id'";
 $stmt = $mysqli->prepare($ret);
 $stmt->execute(); //ok
 $res = $stmt->get_result();

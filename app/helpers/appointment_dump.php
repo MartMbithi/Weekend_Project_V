@@ -36,7 +36,7 @@ $html = '<div style="margin:1px; page-break-after: always;">
                 hr {
                     border: 1px solid green dashed;
                 }
-                
+
                 .list_header{
                     font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
                 }
@@ -94,8 +94,6 @@ $html = '<div style="margin:1px; page-break-after: always;">
                     $prepare = $mysqli->prepare($sql);
                     $prepare->execute(); //ok
                     $return = $prepare->get_result();
-                    $grade_points = 0;
-                    $cumulative_cr_hrs = 0;
                     while ($users = $return->fetch_object()) {
                         $html .=
                     '
