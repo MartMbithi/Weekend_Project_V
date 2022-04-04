@@ -49,6 +49,9 @@ require_once('../app/partials/head.php');
                                 <tr>
                                     <th>Appointment Details</th>
                                     <th>Doctor Details</th>
+                                    <th>
+                                        Appointment Desc
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -78,7 +81,7 @@ require_once('../app/partials/head.php');
                                             Name: <?php echo $row->user_name; ?><br>
                                             Contacts: <?php echo $row->user_phone; ?>
                                         </td>
-
+                                        <td><?php echo $row->app_details;?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
