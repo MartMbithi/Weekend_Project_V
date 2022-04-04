@@ -49,9 +49,7 @@ require_once('../app/partials/head.php');
                                 <tr>
                                     <th>Appointment Details</th>
                                     <th>Doctor Details</th>
-                                    <th>
-                                        Appointment Desc
-                                    </th>
+                                    <th>Appointment Desc</th>
                                 </tr>
                             </thead>
                             <tbody>
