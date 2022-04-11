@@ -125,7 +125,7 @@ require_once('../app/partials/head.php');
                                                         <span class="text-danger">*</span>
                                                     </label>
                                                     <div class="col-lg-6">
-                                                        <select class="multi-select" name="survey_syptoms">
+                                                        <select class="multi-select" name="survey_syptoms[]">
                                                             <option>Colds</option>
                                                             <option>Fever</option>
                                                             <option>Headache</option>
@@ -152,7 +152,7 @@ require_once('../app/partials/head.php');
                                                         <span class="text-danger">*</span>
                                                     </label>
                                                     <div class="col-lg-6">
-                                                        <select class="multi-select" name="survey_user_ailments" multiple="multiple">
+                                                        <select class="multi-select" name="survey_user_ailments[]" multiple="multiple">
                                                             <option>Asthma</option>
                                                             <option>Cancer</option>
                                                             <option>Diabetes</option>
