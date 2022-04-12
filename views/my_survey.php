@@ -10,9 +10,9 @@ if (isset($_POST['add_survey'])) {
     $survey_user_id = $_SESSION['user_id'];
     $survey_user_dob = $_POST['survey_user_dob'];
     $survey_user_gender = $_POST['survey_user_gender'];
-    $survey_syptoms = implode(',' . $_POST['survey_syptoms']);
+    $survey_syptoms = implode(',', $_POST['survey_syptoms']);
     $survey_other_difficulties = $_POST['survey_other_difficulties'];
-    $survey_user_ailments = implode(',' . $_POST['survey_user_ailments']);
+    $survey_user_ailments = implode(',', $_POST['survey_user_ailments']);
     $survey_travel_history = $_POST['survey_travel_history'];
     $survey_user_travel = $_POST['survey_user_travel'];
     $survey_user_people_contacted = $_POST['survey_user_people_contacted'];
@@ -125,7 +125,7 @@ require_once('../app/partials/head.php');
                                                         <span class="text-danger">*</span>
                                                     </label>
                                                     <div class="col-lg-6">
-                                                        <select class="multi-select" name="survey_syptoms[]">
+                                                        <select class="multi-select" name="survey_syptoms[]" multiple="multiple">
                                                             <option>Colds</option>
                                                             <option>Fever</option>
                                                             <option>Headache</option>
