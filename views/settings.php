@@ -12,17 +12,19 @@ if (isset($_POST['update_settings'])) {
     $sys_postal_addr = $_POST['sys_postal_addr'];
     $sys_email = $_POST['sys_email'];
     $sys_id = $_POST['sys_id'];
+    $payment_module_status = $_POST['payment_module_status'];
 
     /* Persist */
-    $sql = "UPDATE settings SET sys_name =?, sys_tagline =?, sys_contacts =?, sys_postal_addr =?, sys_email =? WHERE sys_id = '$sys_id'";
+    $sql = "UPDATE settings SET sys_name =?, sys_tagline =?, sys_contacts =?, sys_postal_addr =?, sys_email =?, payment_module_status=? WHERE sys_id = '$sys_id'";
     $prepare = $mysqli->prepare($sql);
     $bind = $prepare->bind_param(
-        'sssss',
+        'ssssss',
         $sys_name,
         $sys_tagline,
         $sys_contacts,
         $sys_postal_addr,
-        $sys_email
+        $sys_email,
+        $payment_module_status
     );
     $prepare->execute();
     if ($prepare) {
@@ -85,12 +87,24 @@ require_once('../app/partials/head.php');
                                 ?>
                                     <form method="post" enctype="multipart/form-data" role="form">
                                         <div class="row">
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-4">
                                                 <label for="">Company Name</label>
                                                 <input type="text" required name="sys_name" value="<?php echo $row->sys_name; ?>" class="form-control">
                                                 <input type="hidden" required name="sys_id" value="<?php echo $row->sys_id; ?>" class="form-control">
                                             </div>
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-4">
+                                                <label for="">Payments Module</label>
+                                                <select required name="payment_module_status" class="form-control">
+                                                    <?php if ($row->payment_module_status == 'active') { ?>
+                                                        <option value="active">Enable Module</option>
+                                                        <option value="inactive">Disable Module</option>
+                                                    <?php } else { ?>
+                                                        <option value="active">Enable Module</option>
+                                                        <option value="inactive">Disable Module</option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-4">
                                                 <label for="">Company Website</label>
                                                 <input type="text" required name="sys_website" value="<?php echo $row->sys_website; ?>" class="form-control">
                                             </div>
@@ -110,6 +124,7 @@ require_once('../app/partials/head.php');
                                                 <label for="">Company Tagline</label>
                                                 <textarea type="text" name="sys_tagline" required class="form-control"><?php echo $row->sys_tagline; ?></textarea>
                                             </div>
+
                                         </div>
                                         <div class="text-right">
                                             <button type="submit" name="update_settings" class="btn btn-success btn-roundedu">Update</button>
