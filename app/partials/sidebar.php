@@ -11,7 +11,7 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
             <ul class="metismenu" id="menu">
                 <li><a href="dashboard" class="ai-icon" aria-expanded="false">
                         <i class="flaticon-381-home"></i>
-                        <span class="nav-text">Dashboard <?php echo $payment_module;?></span>
+                        <span class="nav-text">Dashboard</span>
                     </a>
                 </li>
                 <li><a href="doctors" class="ai-icon" aria-expanded="false">

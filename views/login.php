@@ -7,11 +7,11 @@ if (isset($_POST['login'])) {
     $user_email = $_POST['user_email'];
     $user_password = sha1(md5($_POST['user_password']));
 
-    $stmt = $mysqli->prepare("SELECT user_name, user_password, user_email, user_access_level, user_id FROM users
-    JOIN settings WHERE user_email =? AND user_password =?");
+    $stmt = $mysqli->prepare("SELECT u.user_name, u.user_password, u.user_email, u.user_access_level, u.user_id, s.payment_module_status FROM users u
+    INNER JOIN settings s WHERE u.user_email =? AND u.user_password =?");
     $stmt->bind_param('ss', $user_email, $user_password);
     $stmt->execute();
-    $stmt->bind_result($user_name, $user_password, $user_email, $user_access_level, $user_id);
+    $stmt->bind_result($user_name, $user_password, $user_email, $user_access_level, $user_id, $payment_module);
     $rs = $stmt->fetch();
 
     /* Session Variables */
