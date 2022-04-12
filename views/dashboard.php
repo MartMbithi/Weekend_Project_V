@@ -242,7 +242,7 @@ require_once('../app/partials/head.php');
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xl-4 col-xxl-6 col-sm-6">
+                            <div class="col-xl-4 col-xxl-4 col-sm-4">
                                 <a href="patients">
                                     <div class="card gradient-bx text-white bg-danger rounded">
                                         <div class="card-body">
@@ -263,7 +263,7 @@ require_once('../app/partials/head.php');
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-xl-4 col-xxl-6 col-sm-6">
+                            <div class="col-xl-4 col-xxl-4 col-sm-4">
                                 <a href="doctors">
                                     <div class="card gradient-bx text-white bg-success rounded">
                                         <div class="card-body">
@@ -284,7 +284,7 @@ require_once('../app/partials/head.php');
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-xl-4 col-xxl-6 col-sm-6">
+                            <div class="col-xl-4 col-xxl-4 col-sm-4">
                                 <a href="appointments">
                                     <div class="card gradient-bx text-white bg-info rounded">
                                         <div class="card-body">
