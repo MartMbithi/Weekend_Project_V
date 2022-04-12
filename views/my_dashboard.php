@@ -268,7 +268,7 @@ $user_id = $_SESSION['user_id'];
                                 </a>
                             </div>
                             <div class="col-6">
-                                <a href="my_bills">
+                                <a href="my_medical_records">
                                     <div class="card gradient-bx text-white bg-danger rounded">
                                         <div class="card-body">
                                             <div class="media align-items-center">
