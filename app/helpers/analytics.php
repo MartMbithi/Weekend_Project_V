@@ -72,4 +72,14 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
     $stmt->bind_result($paid_bills);
     $stmt->fetch();
     $stmt->close();
+
+    /* Precriptions */
+    /* 2. Pending Hospital Bill Payment */
+    $query = "SELECT COUNT(*)  FROM diagonisis
+    WHERE diag_patient_id = '$user_id'";
+    $stmt = $mysqli->prepare($query);
+    $stmt->execute();
+    $stmt->bind_result($prescriptions);
+    $stmt->fetch();
+    $stmt->close();
 }
