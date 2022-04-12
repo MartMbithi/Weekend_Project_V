@@ -1,5 +1,5 @@
 <?php
-$payment_module = $_SESSION['payment_module'];
+$payment_module = $_SESSION['payment_module_status'];
 $user_id = $_SESSION['user_id'];
 $access_level = $_SESSION['user_access_level'];
 
@@ -11,7 +11,7 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
             <ul class="metismenu" id="menu">
                 <li><a href="dashboard" class="ai-icon" aria-expanded="false">
                         <i class="flaticon-381-home"></i>
-                        <span class="nav-text">Dashboard</span>
+                        <span class="nav-text">Dashboard <?php echo $payment_module;?></span>
                     </a>
                 </li>
                 <li><a href="doctors" class="ai-icon" aria-expanded="false">
@@ -34,7 +34,7 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
                         <span class="nav-text">Diagnosis</span>
                     </a>
                 </li>
-                <?php if ($payment_module == 'Active') { ?>
+                <?php if ($payment_module == 'active') { ?>
                     <li><a href="bills" class="ai-icon" aria-expanded="false">
                             <i class="flaticon-381-diploma"></i>
                             <span class="nav-text">Bills</span>
@@ -54,7 +54,7 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
                         <li><a href="reports_doctors">Doctors</a></li>
                         <li><a href="reports_patients">Patients</a></li>
                         <li><a href="reports_apponitments">Appointments</a></li>
-                        <?php if ($payment_module == 'Active') { ?>
+                        <?php if ($payment_module == 'active') { ?>
                             <li><a href="reports_bills">Bills</a></li>
                         <?php } ?>
                         <li><a href="reports_surveys">Surveys</a></li>
@@ -92,7 +92,7 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
                         <span class="nav-text">Diagnosis</span>
                     </a>
                 </li>
-                <?php if ($payment_module == 'Active') { ?>
+                <?php if ($payment_module == 'active') { ?>
                     <li><a href="my_bills" class="ai-icon" aria-expanded="false">
                             <i class="flaticon-381-diploma"></i>
                             <span class="nav-text">Bills</span>
@@ -110,7 +110,7 @@ if ($access_level == 'admin' || $access_level == 'doctor') {
                     </a>
                     <ul aria-expanded="false">
                         <li><a href="my_reports_apponitments">Appointments</a></li>
-                        <?php if ($payment_module == 'Active') { ?>
+                        <?php if ($payment_module == 'active') { ?>
                             <li><a href="my_reports_bills">Bills</a></li>
                         <?php } ?>
                     </ul>
