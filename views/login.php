@@ -7,7 +7,8 @@ if (isset($_POST['login'])) {
     $user_email = $_POST['user_email'];
     $user_password = sha1(md5($_POST['user_password']));
 
-    $stmt = $mysqli->prepare("SELECT user_name, user_password, user_email, user_access_level, user_id FROM users WHERE user_email =? AND user_password =?");
+    $stmt = $mysqli->prepare("SELECT user_name, user_password, user_email, user_access_level, user_id FROM users
+    JOIN settings WHERE user_email =? AND user_password =?");
     $stmt->bind_param('ss', $user_email, $user_password);
     $stmt->execute();
     $stmt->bind_result($user_name, $user_password, $user_email, $user_access_level, $user_id);
@@ -17,6 +18,7 @@ if (isset($_POST['login'])) {
     $_SESSION['user_id'] = $user_id;
     $_SESSION['user_access_level'] = $user_access_level;
     $_SESSION['user_name'] = $user_name;
+    $_SESSION['payment_module_status'] = $payment_module;
 
     if (($rs && $user_access_level == "admin") || ($rs && $user_access_level == "doctor")) {
         /* Pass This Alert Via Session */
