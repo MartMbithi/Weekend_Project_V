@@ -13,6 +13,7 @@ if (isset($_POST['add_medical_record'])) {
     $diag_details  = $_POST['diag_details'];
     $diag_date_created = $_POST['diag_date_created'];
     $diag_cost = $_POST['diag_cost'];
+   
 
     /* Add Details */
     $sql = "INSERT INTO diagonisis (diad_ref, diag_patient_id, diag_doctor_id, diag_title, diag_details, diag_date_created,
