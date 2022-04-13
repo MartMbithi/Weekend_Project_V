@@ -96,11 +96,9 @@ require_once('../app/partials/head.php');
                                                 <label for="">Payments Module</label>
                                                 <select required name="payment_module_status" class="form-control">
                                                     <?php if ($row->payment_module_status == 'active') { ?>
-                                                        <option value="active">Enable Module</option>
                                                         <option value="inactive">Disable Module</option>
                                                     <?php } else { ?>
                                                         <option value="active">Enable Module</option>
-                                                        <option value="inactive">Disable Module</option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
